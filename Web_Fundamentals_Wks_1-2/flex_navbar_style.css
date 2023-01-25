@@ -10,6 +10,8 @@
     background-color: rgb(59, 54, 54);
     overflow: hidden;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     font-family: 'Roboto', sans-serif;
 }
 
