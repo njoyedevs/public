@@ -1,0 +1,7 @@
+.gradient {
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(to right, blue 33%, white 33% 66%, red 66%);
+    border: 5px solid black;
+}
