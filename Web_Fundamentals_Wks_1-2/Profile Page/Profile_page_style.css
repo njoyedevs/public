@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.top_box {
+    height: 50px;
+    background-color: rgb(59, 54, 54);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgb(202, 200, 200);
+    font-family: monospace;
+    font-size: larger;
+    margin-left: 20%;
+}
+
+#nav-title {
+    font-weight: bold;
+    color: rgb(227, 217, 217);
+    font-family: cursive;
+    font-size: 20px;
+    align-items: center;
+    margin: 0px 25px 0px 0px;
+}   
+
+#active {
+    font-weight: bold;
+    color: white;
+    font-family: monospace;
+    text-decoration: none;
+    margin: 0px 25px 0px;
+    display: inline;
+    white-space: nowrap;
+}
+
+#nonactive {
+    font-weight: normal;
+    color: rgb(202, 200, 200);
+    font-family: monospace;
+    margin: 0px 25px 0px;
+    text-decoration: none;
+    display: inline;
+    white-space: nowrap;
+}
+
+.button {
+    margin-right: 20%;
+}
+
+.btn {
+    width: 80px;
+    height: 25px;
+    background:#38c9e3;
+    color: #f7faf9;
+    border: 3px solid black;
+    box-shadow:2px 2px 2px #01252b;
+}
+
+.bottom_boxes {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom_left_box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    margin-left: 20%;
+}
+
+.user_container {
+    width: 500px;
+    background: linear-gradient(#098399 30%, white 30%);
+    padding: 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.user_image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: lightseagreen;
+    padding: 3px;
+}
+
+.user_image .profile_image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.user_name {
+    font-family: cursive;
+}
+
+.user_location {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px;
+    font-family: cursive;
+}
+
+.user_location_image {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+
+#user_description {
+    font-family: sans-serif;
+}
+
+.user_edit {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.gear_image {
+    height: 20px;
+    width: 20px;
+}
+
+.user_edit_link {
+    color: #1b6bac;
+    padding-left: 5px;
+}
+
+.bottom_right_box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: rgb(255, 255, 255);
+    margin-right: 20%;
+}
+
+.connection_requests {
+    width: 300px;
+    background: linear-gradient(#098399 30%, white 30%);
+    padding: 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}

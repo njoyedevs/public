@@ -16,12 +16,12 @@
 }
 
 .nav-title {
-    padding-top: 10px;
     padding-left: 20px;
     font-weight: bold;
     color: rgb(227, 217, 217);
     font-family: cursive;
     font-size: 20px;
+    align-items: center;
 }   
 
 .nav-links {
