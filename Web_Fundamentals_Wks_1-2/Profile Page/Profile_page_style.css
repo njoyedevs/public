@@ -181,7 +181,7 @@
 }
 
 .ed {
-    margin: 10px 0px 10px 30px;
+    margin: 10px 0px 10px 20px;
     font-family: cursive;
 }
 
@@ -200,6 +200,8 @@
     margin-right: 20%;
     padding-left: 10px;
 }
+
+/* Connection Requests */
 
 .connection_requests {
     margin-left: 5px;
@@ -258,11 +260,22 @@
     margin: 5px;
 }
 
-/* Connection Requests */
+/* Connection */
 
 .connections {
     margin: 10px 0px 0px 5px;
     border: 3px solid lightgrey;
+}
+
+.top_section_2 {
+    height: 50px;
+    background-color: #3b3636;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: lightgrey;
+    font-family: cursive;
+    font-size: .85rem;
 }
 
 .buttons_3 {
@@ -272,6 +285,7 @@
     border-radius:360px;
     color: rgb(0, 0, 0);
     border: none;
+    margin: 0px 15px 0px 20px;
 }
 
 .connect_person_1,
