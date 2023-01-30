@@ -7,4 +7,5 @@ function play(element) {
 
 function pause(element) {
     element.pause();
+    element.currentTime = 0;
 }
