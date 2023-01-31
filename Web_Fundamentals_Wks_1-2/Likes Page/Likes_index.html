@@ -10,25 +10,49 @@
 <body>
     <div class="main_container">
         <div class="container_1">
-            <div class="network">Network</div>
+            <div class="network"><strong>Network</strong></div>
         </div>
         <div class="container_2">
-            <div class="your_feed">Your Feed</div>
+            <div class="your_feed"><strong>Your Feed</strong></div>
         </div>
         <div class="container_3">
-            <div class="profile_box">
-                <img src="profile_pic.png" alt="Profile Pic" class="profile_pic">
-                <a href="#">Add an avatar</a>
-                <h3 class="profile_name">James Doe</h3>
-            </div>
-            <div class="comment_box">
-                <div class="top">
-                    <h3 class="some_user">Some User</h3>
-                    <h5 id="like_count">0 like(s)</h5>
-                    <button onclick="increase()" class="btn_5">Like</button>
+            <div class="section_1">
+                <div class="profile_box">
+                    <img class="profile_pic" src="profile_pic.png" alt="Profile Pic">
+                    <a class="add_avitar_link" href="#"><b>Add an avatar</b></a>
+                    <h3 class="profile_name">James Doe</h3>
                 </div>
-                <div class="bottom">
-                    <h5 class="some_text">This is some filler text, it can say anything<br> we lik</h5>
+            </div>
+            <div class="section_2">
+                <div class="comment_box">
+                    <div class="top">
+                        <h3 class="some_user">Neil M</h3>
+                        <h5 id="like_count_1">0 like(s)</h5>
+                        <button onclick="increase_neil('like_count_1')" class="btn_5">Like</button>
+                    </div>
+                    <div class="bottom">
+                        <h5 class="some_text">I just set up this new discord bot, let me<br>know what you all think <a href="#">link</a></h5>
+                    </div>
+                </div>
+                <div class="comment_box">
+                    <div class="top">
+                        <h3 class="some_user">Nichole K</h3>
+                        <h5 id="like_count_2">0 like(s)</h5>
+                        <button onclick="increase_nichole('like_count_2')" class="btn_5">Like</button>
+                    </div>
+                    <div class="bottom">
+                        <h5 class="some_text">Just finished my <a href="#">next commic</a>, check it out.</h5>
+                    </div>
+                </div>
+                <div class="comment_box">
+                    <div class="top">
+                        <h3 class="some_user">Jim R</h3>
+                        <h5 id="like_count_3">0 like(s)</h5>
+                        <button onclick="increase_jim('like_count_3')" class="btn_5">Like</button>
+                    </div>
+                    <div class="bottom">
+                        <h5 class="some_text">I can't stop listening to the <a href="#">new album</a>.<br>Who else is liking it?</h5>
+                    </div>
                 </div>
             </div>
         </div>
