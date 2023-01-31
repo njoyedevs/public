@@ -4,6 +4,17 @@
     box-shadow: none;
 }
 
+:root {
+    --temp1: 24;
+    --temp2: 18; 
+    --temp3: 27;
+    --temp4: 19;
+    --temp5: 21;
+    --temp6: 16;
+    --temp7: 26;
+    --temp8: 21;
+}
+
 .container_1 {
     display: flex;
     align-items: center;

@@ -10,14 +10,14 @@
 <body>
     <div class="container_1">
         <h1 class="heading"><strong>DojoWeather</strong></h1>
-        <h2 class="city_1"><strong>San Jose</strong></h2>
-        <h2 class="city_2"><strong>Chicago</strong></h2>
-        <h2 class="city_3"><strong>New York</strong></h2>
+        <h2 onclick="alert('You clicked San Jose')" class="city_1"><strong>San Jose</strong></h2>
+        <h2 onclick="alert('You clicked Chicago')" class="city_2"><strong>Chicago</strong></h2>
+        <h2 onclick="alert('You clicked New York')" class="city_3"><strong>New York</strong></h2>
     </div>
     <div class="container_2">
         <h1 class="city_heading"><strong>Phoenix</strong></h1>
         <h6 class="show_temp_text">show temperature in</h6>
-        <select name="select_temps" id="select_temps">
+        <select onchange="changeTemp()" name="select_temps" id="select_temps">
             <option value="Celsius">C°</option>
             <option value="Fahrenheit">F°</option>
         </select>
@@ -28,8 +28,8 @@
             <img src="./assets/assets/some_rain.png" alt="Some Rain">
             <h6 class="weather_text">some rain</h6>
             <div class="temps">
-                <h4 class="temp_low">24°</h4>
-                <h4 class="temp_high">18°</h4>
+                <h4 id="temp1" class="temp_low"></h4>
+                <h4 id="temp2" class="temp_high"></h4>
             </div>
         </div>
         <div class="tomorrow">
@@ -37,8 +37,8 @@
             <img src="./assets/assets/some_sun.png" alt="Sunny">
             <h6 class="weather_text">some sun</h6>
             <div class="temps">
-                <h4 class="temp_low">27°</h4>
-                <h4 class="temp_high">19°</h4>
+                <h4 id="temp3" class="temp_low"></h4>
+                <h4 id="temp4" class="temp_high"></h4>
             </div>
         </div>
         <div class="Friday">
@@ -46,8 +46,8 @@
             <img src="./assets/assets/some_clouds.png" alt="Some Clouds">
             <h6 class="weather_text">some clouds</h6>
             <div class="temps">
-                <h4 class="temp_low">21°</h4>
-                <h4 class="temp_high">16°</h4>
+                <h4 id="temp5" class="temp_low"></h4>
+                <h4 id="temp6" class="temp_high"></h4>
             </div>
         </div>
         <div class="Saturday">
@@ -55,17 +55,17 @@
             <img src="./assets/assets/some_sun.png" alt="Sunny">
             <h6 class="weather_text">some sun</h6>
             <div class="temps">
-                <h4 class="temp_low">26°</h4>
-                <h4 class="temp_high">21°</h4>
+                <h4 id="temp7" class="temp_low"></h4>
+                <h4 id="temp8"class="temp_high"></h4>
             </div>
         </div>
     </div>
-    <div class="container_4">
+    <div id="remove_cookie" class="container_4">
         <img class="cookie_image" src="./assets/assets/cookie.png" alt="Cookie Image">
         <div class="cookie_box2">
             <h4 class="stop_cookie"><strong>Stop! Cookie time</strong></h4>
             <h6 class="cookie_text">We use cookies (sadly no the edible ones) to personalize<br>content and ads, to provide social media features and to<br>analyze our traffic. <a href="#">Read_more...</a></h6>
-            <button class="i_accept">I Accept</button>
+            <button onclick="remove_cookie_mes()" class="i_accept">I Accept</button>
         </div>
     </div>
     <script src="dojoweather_javascript.js"></script>
