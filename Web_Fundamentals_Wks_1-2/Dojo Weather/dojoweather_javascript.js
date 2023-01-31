@@ -5,18 +5,25 @@ function remove_cookie_mes() {
 
 function changeTemp() {
 
+    function converstion(temp) {
+        var conversion = (temp * 9/5) + 32
+        return conversion;
+    }
+
     var temp_change = document.getElementById("#select_temps");
 
     var r = document.querySelector(':root');
 
-    root_temp1 = r.getPropertyValue("--temp1");
-    root_temp2 = r.getPropertyValue("--temp2");
-    root_temp3 = r.getPropertyValue("--temp3");
-    root_temp4 = r.getPropertyValue("--temp4");
-    root_temp5 = r.getPropertyValue("--temp5");
-    root_temp6 = r.getPropertyValue("--temp6");
-    root_temp7 = r.getPropertyValue("--temp7");
-    root_temp8 = r.getPropertyValue("--temp8");
+    var rs = getComputedStyle(r);
+
+    root_temp1 = rs.getPropertyValue("--temp1");
+    root_temp2 = rs.getPropertyValue("--temp2");
+    root_temp3 = rs.getPropertyValue("--temp3");
+    root_temp4 = rs.getPropertyValue("--temp4");
+    root_temp5 = rs.getPropertyValue("--temp5");
+    root_temp6 = rs.getPropertyValue("--temp6");
+    root_temp7 = rs.getPropertyValue("--temp7");
+    root_temp8 = rs.getPropertyValue("--temp8");
 
     if (temp_change == "F") {
         temp1.innerText = conversion(root_temp1) + "°";
