@@ -276,6 +276,11 @@
     color: lightgrey;
     font-family: cursive;
     font-size: .85rem;
+    padding-left: 40px;
+}
+
+.top_section_2 > h2 {
+    margin-left: 40px;
 }
 
 .buttons_3 {
@@ -298,6 +303,7 @@
     display: flex;
     align-items: center;
     justify-content: left;
+    margin-left: 65px;
 }
 
 .view_more_button {

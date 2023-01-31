@@ -31,7 +31,7 @@
                         <img src="./profile_pic.png" alt="Profile Picture" class="profile_image">
                     </div>
                     <div class="user_name">
-                        <h2>Nicolas Joye, DBA PMP</h2>
+                        <h2 id="name_text">John Doe</h2>
                     </div>
                     <div class="user_location">
                         <img src="./location_image.jpg" alt="Location Logo" class="user_location_image">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="user_edit">
                         <img src="gear_icon.png" alt="Gear Icon" class="gear_image">
-                        <a href="#" class="user_edit_link">edit profile</a>
+                        <a href="#" onclick="changeName()" class="user_edit_link"><strong>edit profile</strong></a>
                     </div>
                 </div>
                 <div class="education">
@@ -81,17 +81,17 @@
                         <h2>Connection Requests</h2>
                     </div>
                     <div class="bottom_section">
-                        <div class="person_1">
+                        <div id="user_1" class="person_1">
                             <img src="adrien-s.jpg" alt="Adrien Picture" class="connection_pic_icon">
                             <h4 class="connection_text">Adrien S</h4>
-                            <img src="accept-circle.png" alt="Accept Circle" class="circle_icons">
-                            <img src="close-circle.png" alt="Accept Circle" class="circle_icons">
+                            <img onclick="removeUser('user_1')" id="add_user" src="accept-circle.png" alt="Add User" class="circle_icons">
+                            <img onclick="removeUser('user_1')" id="remove_user" src="close-circle.png" alt="Remove User" class="circle_icons">
                         </div>
-                        <div class="person_2">
+                        <div id="user_2" class="person_2">
                             <img src="alayne-s.jpg" alt="Alayne Picture" class="connection_pic_icon">
                             <h4 class="connection_text">Alayne S</h4>
-                            <img src="accept-circle.png" alt="Accept Circle" class="circle_icons">
-                            <img src="close-circle.png" alt="Accept Circle" class="circle_icons">
+                            <img onclick="removeUser('user_2')" id="add_user" src="accept-circle.png" alt="Add User" class="circle_icons">
+                            <img onclick="removeUser('user_2')" id="remove_user" src="close-circle.png" alt="Remove User" class="circle_icons">
                         </div>
                     </div>
                 </div>
@@ -123,11 +123,12 @@
                         </div>
                     </div>
                     <div class="view_more_button">
-                        <a href="#">View More</a>
+                        <a href="#"><strong>View More</strong></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="Profile_page_javascript.js"></script>
 </body>
 </html>
