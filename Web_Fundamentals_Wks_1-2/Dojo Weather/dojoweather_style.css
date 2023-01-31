@@ -1,0 +1,29 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-shadow: none;
+}
+
+.container_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

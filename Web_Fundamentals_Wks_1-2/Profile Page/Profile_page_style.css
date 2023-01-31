@@ -240,6 +240,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .connection_pic_icon {
@@ -272,15 +273,10 @@
     background-color: #3b3636;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-evenly;
     color: lightgrey;
     font-family: cursive;
     font-size: .85rem;
-    padding-left: 40px;
-}
-
-.top_section_2 > h2 {
-    margin-left: 40px;
 }
 
 .buttons_3 {
@@ -290,7 +286,6 @@
     border-radius:360px;
     color: rgb(0, 0, 0);
     border: none;
-    margin: 0px 15px 0px 20px;
 }
 
 .connect_person_1,
@@ -302,8 +297,8 @@
 .connect_person_7 {
     display: flex;
     align-items: center;
-    justify-content: left;
-    margin-left: 65px;
+    justify-content: center;
+    margin-right: 90px;
 }
 
 .view_more_button {
