@@ -26,6 +26,4 @@ function changeTemp() {
             temp.innerText = conversion_cel(temp.innerText)
         }
     }
-
-    alert("Loading weather report...")
 }
