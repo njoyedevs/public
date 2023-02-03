@@ -7,13 +7,14 @@
     <title>Example API</title>
 </head>
 <body>
-    <button onclick="fetchJSON()" class="change">Change Pokemon</button>
     <div class="container">
-        <h2 class="inner_container">
-            Pokemon Name Here
+        <h2 id="inner_container">
+            Guess Pokemon Name
         </h2>
-        <img id="image_to_change" src="1.png" alt="">
+        <img id="image_to_change" class="start_image" src="./1.png" alt="">
     </div>
-    <script src="example_api.js"></script>
+    <script src="t_file.js"></script>
+    <input type="text">
+    <button onclick="getPokemonName(), getPokemonImg_Correct()" class="button">Play</button> 
 </body>
 </html>
