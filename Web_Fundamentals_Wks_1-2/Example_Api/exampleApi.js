@@ -115,7 +115,7 @@ function checkAnswers() {
         const playerAnswer = document.getElementById("input").value;
 
         // Check For Validity
-        console.log("This players' answer is: " + playerAnswer);
+        console.log("This players' answer was: " + playerAnswer);
         console.log("This correct home world is: " + homeWorld);
 
         // Check Answers
@@ -123,7 +123,7 @@ function checkAnswers() {
 
             // Update Home World Box
             homeWorldVar = document.querySelector(".homeworld");
-            homeWorldVar.innerText = `Correct! ${homeWorld}!`;
+            homeWorldVar.innerText = `Correct!\n${homeWorld}!`;
 
             againButton.innerText = "Play Again!";
 
