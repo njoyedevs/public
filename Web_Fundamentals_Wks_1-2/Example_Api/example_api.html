@@ -9,14 +9,10 @@
 </head>
 <body>
     <div id="container">
-        <div id="remove_cookie" class="container_4">
-            <div class="inner_box4">
-                <div class="cookie_box2">
-                    <a class="stop_cookie"><strong>Help Find Bounty Hunter's Targets!</strong></a>
-                    <a class="cookie_text">Enter the name of homeworld for Bounty Hunter's next target</a>
-                </div>
-                <button onclick="remove_cookie_mes()" class="i_accept">Let's Play</button>
-            </div>
+        <div class="remove_message_box">
+            <a id="title_text"><strong>Help Find Bounty Hunter's Targets!</strong></a>
+            <a id="rules_text">Enter the name of home world for Bounty Hunter's next target</a>
+            <button id="lets_play_button" onclick="remove_mes()" >Let's Play</button>
         </div>
         <!-- <video autoplay muted loop id="background_video">
             <source src="./assets/star_particles.mp4" type="video/mp4">
@@ -25,10 +21,16 @@
         <h1 id="game_name">Bounty Hunter Game</h1>
         <div id="image_box">
             <img class="image" id="main_image" src="./assets/bounty_hunter.png" alt="Bounty Hunter Image">
-            <img class="image" id="change_image" src="./assets/yoda.png" alt="Yoda Image">
+            <div id="question_box">
+                <img class="image" id="change_image" src="./assets/yoda.png" alt="Yoda Image">
+                <div class="text_box">
+                    <div class="character_name"></div>
+                    <div class="homeworld"> </div>
+                </div>
+            </div>
         </div>
-        <input id="input" value="Enter Homeworld Name Here..." type="text">
-        <button id="button" onclick="getPokemonName(), getPokemonImg_Correct()">Play</button> 
+        <input id="input" placeholder="Click Play to Begin" type="text">
+        <button id="button" onclick="play()">Play</button> 
     </div>
     <script src="./exampleApi.js"></script>
 </body>

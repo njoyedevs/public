@@ -51,13 +51,57 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
 #main_image {
     height: 30rem;
     width: 15rem;
-    padding: 1rem 3rem 0rem rem;
+    padding: 1rem 3rem 1rem 0rem;
+}
+
+#question_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0rem 0rem 0rem 3rem;
 }
 
 #change_image {
-    height: 30rem;
-    width: 15rem;
-    padding: 1rem 0rem 0rem 3rem;
+    height: 15rem;
+    width: 10rem;
+    padding: 0rem 0rem 0rem 0rem;
+}
+
+.text_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.question_box_active {
+    border: .21rem solid rgb(42, 4, 85);
+    background: rgb(49, 4, 231);
+    background-image:
+    linear-gradient(
+        to right, 
+        rgb(0, 0, 0), 
+        #480a94 20% 40%, 
+        rgb(103, 40, 205), 
+        #480a94,
+        rgb(20, 9, 39)
+        );
+}
+
+.character_name {
+    color: white;
+    font-family: cursive;
+    font-size: 1rem;
+    padding: 0rem 0rem 0rem 0rem;
+}
+
+.homeworld {
+    color: white;
+    font-family: cursive;
+    font-size: 1rem;
+    padding: 4rem 0rem 0rem 0rem;
 }
 
 #input {
@@ -69,20 +113,33 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
     font-size: 1rem;
 }
 
-/* This is the alert message */
-
-.container_4 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#button {
+    background: rgb(49, 4, 231);
+    color: #d2acff;
+    border: .1rem solid rgb(65, 4, 162);
     font-family: cursive;
+    margin: 1rem 0rem 1rem 0rem;
+    padding: 1rem 3rem 1rem 4rem;
+    font-size: 2rem;
+    background-image:
+    linear-gradient(
+        to right, 
+        rgb(0, 0, 0), 
+        #480a94 20% 40%, 
+        rgb(103, 40, 205), 
+        #480a94,
+        rgb(20, 9, 39)
+    );
 }
 
-.inner_box4 {
+/* This is the alert message */
+
+.remove_message_box {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-family: cursive;
     padding: 1rem;
     background-color: rgb(70, 14, 167);
     position: fixed;
@@ -100,29 +157,21 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
     );
 }
 
-.cookie_box2 {
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.stop_cookie {
+#title_text {
     margin: 1rem 0rem 0rem 0rem;
     text-align: center;
-}
-
-.cookie_text {
-    margin: 1rem 0rem 0rem 0rem;
-    text-align: center;
-}
-
-.cookie_text > a {
     color: rgb(221, 198, 251);
+    font-size: 1.3rem;
 }
 
-.i_accept {
+#rules_text {
+    margin: 1rem 0rem 0rem 0rem;
+    text-align: center;
+    color: rgb(221, 198, 251);
+    font-size: 1.3rem;
+}
+
+#lets_play_button {
     background: rgb(49, 4, 231);
     color: #d2acff;
     border: .1rem solid black;
