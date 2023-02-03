@@ -5,8 +5,10 @@ var homeWorldNum;
 var homeWorldLink;
 var homeWorld;
 var gameStart = false;
-var homeWorldVar = "";
+var homeWorldVar = document.querySelector(".homeworld");
 var againButton = document.querySelector("#button");
+var scoreBox = document.querySelector(".score");
+var correctCount = 0;
 
 const initializeGame = async () => {
 
@@ -47,12 +49,46 @@ const initializeGame = async () => {
     homeWorld = homeWorldData.name;
     //console.log(homeWorld);
 
+    // Get Homeworld Data for Hints
+    homeWorldTerrain = homeWorldData.terrain;
+    homeWorldClimate = homeWorldData.climate;
+    homeWorldDiameter = homeWorldData.diameter;
+    homeWorldPopulation = homeWorldData.population;
+
+    // Break up the terrains with long results
+    const fixedTerrain = homeWorldTerrain.replaceAll(',','\n');
+
+    // Break up the climates with long results
+    const fixedClimate = homeWorldClimate.replaceAll(',','\n');
+
+    // Add Hints to Home World
+    homeWorldVar.innerText = `**Hints**
+                                Terrain: ${fixedTerrain}
+                                Climate: ${fixedClimate}
+                                Diameter: ${homeWorldDiameter}
+                                Population: ${homeWorldPopulation}`
+
     // Update Text Box Placeholder
     document.getElementById("input").placeholder = "Enter Home World Here...";
+
+    // Add the elements to the score box
+    scoreBox.style.border = ".21rem solid rgb(42, 4, 85)";
+    scoreBox.style.background = 'rgb(49, 4, 231)';
+    scoreBox.style.backgroundImage = 'linear-gradient(to right, rgb(0, 0, 0), #480a94 20% 40%, rgb(103, 40, 205), #480a94, rgb(20, 9, 39))';
+    scoreBox.innerText = `Score: ${correctCount}`;
 
     // Update gameStart variable to True
     gameStart = true;
     //console.log(gameStart);
+};
+
+function increaseScore() {
+
+    // Increase correct count
+    correctCount++;
+
+    // Update the text inside the score box
+    scoreBox.innerText = `Score: ${correctCount}`;
 };
 
 function clear() {
@@ -79,10 +115,10 @@ function play() {
     remove();
 
     // Add the question box
-    const element = document.querySelector('.text_box');
-    element.style.border = ".21rem solid rgb(42, 4, 85)";
-    element.style.background = 'rgb(49, 4, 231)';
-    element.style.backgroundImage = 'linear-gradient(to right, rgb(0, 0, 0), #480a94 20% 40%, rgb(103, 40, 205), #480a94, rgb(20, 9, 39))';
+    const element_2 = document.querySelector('.text_box');
+    element_2.style.border = ".21rem solid rgb(42, 4, 85)";
+    element_2.style.background = 'rgb(49, 4, 231)';
+    element_2.style.backgroundImage = 'linear-gradient(to right, rgb(0, 0, 0), #480a94 20% 40%, rgb(103, 40, 205), #480a94, rgb(20, 9, 39))';
 
     initializeGame();
 };
@@ -111,8 +147,10 @@ function checkAnswers() {
         console.log("This players' answer was: " + playerAnswer);
         console.log("This correct home world is: " + homeWorld);
 
-        // Update Home World Box
-        homeWorldVar = document.querySelector(".homeworld");
+        // Increment score if correct
+        if (playerAnswer == homeWorld) {
+            increaseScore();
+        };
 
         // Check Answers
         homeWorldVar.innerText = homeWorld == playerAnswer?`Correct!\n${homeWorld}!`:`Incorrect!\nPlay Again!`;
