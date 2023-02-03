@@ -29,5 +29,8 @@ function getPokemonImg_Correct() {
     // Change the Start button to Play Again
 }
 
-
+function remove_cookie_mes() {
+    var element_to_remove = document.getElementById("remove_cookie");
+    element_to_remove.remove();
+};
 

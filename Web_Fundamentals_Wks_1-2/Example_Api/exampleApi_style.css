@@ -30,19 +30,101 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
   } */
 
 #logo_image {
-    height: 10rem;
+    height: 6rem;
+    width: 12rem;
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+#game_name {
+    color: rgb(147, 137, 21);
+    height: 2rem;
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+#image_box {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#main_image {
+    height: 30rem;
+    width: 15rem;
+    padding: 1rem 3rem 0rem rem;
+}
+
+#change_image {
+    height: 30rem;
+    width: 15rem;
+    padding: 1rem 0rem 0rem 3rem;
+}
+
+#input {
+    height: 3rem;
     width: 20rem;
-    padding: 1rem 40rem 1rem 0rem;
+    border-radius: 2rem;
 }
 
-.main_image {
-    height: 1rem;
-    width: 2rem;
-    padding: 0rem 0rem 0rem 0rem;
+/* This is the alert message */
+
+.container_4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
 }
 
-.change_image {
-    height: 1rem;
-    width: 2rem;
-    padding: 0rem 0rem 0rem 0rem;
+.inner_box4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgb(70, 14, 167);
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    color: white;
+    background-image:
+    linear-gradient(
+        to right, 
+        rgb(0, 0, 0), 
+        #480a94 20% 40%, 
+        rgb(103, 40, 205), 
+        #480a94,
+        rgb(20, 9, 39)
+    );
+}
+
+.cookie_box2 {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.stop_cookie {
+    margin: 1rem 0rem 0rem 0rem;
+    text-align: center;
+}
+
+.cookie_text {
+    margin: 1rem 0rem 0rem 0rem;
+    text-align: center;
+}
+
+.cookie_text > a {
+    color: rgb(221, 198, 251);
+}
+
+.i_accept {
+    background: rgb(49, 4, 231);
+    color: #d2acff;
+    border: .1rem solid black;
+    box-shadow: .5rem .5rem .5rem #000000;
+    padding: .4rem .4rem .4rem .4rem ;
+    font-family: cursive;
+    margin: 1rem 1rem 0rem 0rem;
 }
