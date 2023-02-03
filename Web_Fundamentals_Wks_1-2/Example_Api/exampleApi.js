@@ -7,6 +7,8 @@ var characterData;
     var gameStart = false;
     var remove = true;
     var correctOrNot = false;
+    var clear = false;
+    var homeWorldVar;
     //console.log(correctOrNot);
     var againButton = document.querySelector("#button");
 
@@ -20,6 +22,19 @@ function play() {
 
         // Only remove once
         remove = false;
+    }
+
+    console.log(clear);
+
+    if (clear == true) {
+
+        console.log(clear);
+
+        // Update Placeholder to Guide Player
+        homeWorldVar.innerText = ``;
+        document.getElementById("input").value = "";
+        document.getElementById("input").placeholder = "Enter Home World Here";
+        document.getElementById("button").value = "Check Answer";
     }
 
     // Add the question box{
@@ -70,7 +85,7 @@ function play() {
         homeWorld = homeWorldData.name;
         //console.log(homeWorld);
 
-        // Update Placeholder to Guide Player
+        // Update Text Box Placeholder
         document.getElementById("input").placeholder = "Enter Home World Here";
 
         // Update gameStart variable to True
@@ -88,6 +103,7 @@ function checkAnswers() {
         console.log("Winning");
 
         gameStart = true;
+        clear = true;
 
         play();
 
@@ -108,7 +124,7 @@ function checkAnswers() {
             console.log(correctOrNot);
 
             // Update Home World Box
-            const homeWorldVar = document.querySelector(".homeworld");
+            homeWorldVar = document.querySelector(".homeworld");
             homeWorldVar.innerText = `Correct! ${homeWorld}!`;
 
             againButton.innerText = "Play Again!";
