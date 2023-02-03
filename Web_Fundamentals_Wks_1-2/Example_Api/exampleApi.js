@@ -8,33 +8,36 @@ var characterData;
     var remove = true;
     var correctOrNot = false;
     var clear = false;
-    var homeWorldVar;
-    //console.log(correctOrNot);
+    var homeWorldVar = "";
     var againButton = document.querySelector("#button");
 
 function play() {
 
     if (remove == true) {
 
+        // console.log("Removed");
+
         // Remove the Message Box
-        var element_to_remove = document.getElementsByClassName("remove_message_box");
+        const element_to_remove = document.getElementsByClassName("remove_message_box");
         element_to_remove[0].remove(); 
 
         // Only remove once
         remove = false;
     }
 
-    console.log(clear);
+    //console.log(clear);
 
     if (clear == true) {
 
-        console.log(clear);
+        // console.log("Cleared");
 
         // Update Placeholder to Guide Player
-        homeWorldVar.innerText = ``;
+        homeWorldVar.innerText = "";
         document.getElementById("input").value = "";
         document.getElementById("input").placeholder = "Enter Home World Here";
-        document.getElementById("button").value = "Check Answer";
+        againButton.innerText = "Check Answer";
+
+        clear == false;
     }
 
     // Add the question box{
@@ -100,9 +103,8 @@ function checkAnswers() {
 
     if (gameStart == false) {
 
-        console.log("Winning");
+        console.log("Start Over");
 
-        gameStart = true;
         clear = true;
 
         play();
@@ -113,15 +115,11 @@ function checkAnswers() {
         const playerAnswer = document.getElementById("input").value;
 
         // Check For Validity
-        console.log("This is home world: " + homeWorld);
-        console.log("This is player: " + playerAnswer);
+        console.log("This players' answer is: " + playerAnswer);
+        console.log("This correct home world is: " + homeWorld);
 
         // Check Answers
         if (homeWorld == playerAnswer) {
-        
-            // Change Validation Variable
-            correctOrNot = true;
-            console.log(correctOrNot);
 
             // Update Home World Box
             homeWorldVar = document.querySelector(".homeworld");
@@ -129,12 +127,12 @@ function checkAnswers() {
 
             againButton.innerText = "Play Again!";
 
+            // Change Validation Variable
+            correctOrNot = true;
+            console.log(`The Answer Was Correct: ${correctOrNot}`);
             gameStart = false;
 
         } else {
-            // Change Validation Variable
-            correctOrNot = false;
-            console.log(correctOrNot)
 
             // Update Home World Box
             const homeWorldVar = document.querySelector(".homeworld");
@@ -142,6 +140,9 @@ function checkAnswers() {
 
             againButton.innerText = "Play Again!";
 
+            // Change Validation Variable
+            correctOrNot = false;
+            console.log(`The Answer Was Incorrect: ${correctOrNot}`);
             gameStart = false;
         }
     };
