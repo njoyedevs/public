@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example API</title>
-    <link rel="stylesheet" href="">
+    <title>Bounty Hunter Game</title>
+    <link rel="stylesheet" href="./exampleApi_style.css">
 </head>
 <body>
-    <div class="container">
-        <h3 id="inner_container">
-            Guess Pokemon Name
-        </h3>
-        <img class="image" id="guess_image" src="./1.png" alt="">
+    <div id="container">
+        <!-- <video autoplay muted loop id="background_video">
+            <source src="./assets/star_particles.mp4" type="video/mp4">
+        </video> -->
+        <img class="image" id="logo_image" src="./assets/logo.png" alt="Star Wars Image">
+        <h1>Bounty Hunter Game</h1>
+        <div id="image_box">
+            <img class="image" id="main_image" src="./assets/bounty_hunter.png" alt="Bounty Hunter Image">
+            <img class="image" id="change_image" src="./assets/yoda.png" alt="Yoda Image">
+        </div>
         <input id="input" type="text">
         <button id="button" onclick="getPokemonName(), getPokemonImg_Correct()">Play</button> 
     </div>
-    <script src="t_file.js"></script>
+    <script src="./exampleApi.js"></script>
 </body>
 </html>

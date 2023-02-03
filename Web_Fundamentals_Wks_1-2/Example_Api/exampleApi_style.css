@@ -1,0 +1,48 @@
+/* Image Sources
+Bounty Hunter Image From - https://imgbin.com/png/7q6HuiP8/boba-fett-luke-skywalker-jango-fett-star-wars-jabba-the-hutt-png
+Yoda Image From - https://imgbin.com/png/eP3KdQyV/star-wars-png
+Star Wars Logo From - https://www.pngfind.com/download/ibiRiTh_star-wars-logo-star-wars-hd-png-download/ 
+Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video.asp
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: black;
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+/* #background_video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .1;
+  } */
+
+#logo_image {
+    height: 10rem;
+    width: 20rem;
+    padding: 1rem 40rem 1rem 0rem;
+}
+
+.main_image {
+    height: 1rem;
+    width: 2rem;
+    padding: 0rem 0rem 0rem 0rem;
+}
+
+.change_image {
+    height: 1rem;
+    width: 2rem;
+    padding: 0rem 0rem 0rem 0rem;
+}
