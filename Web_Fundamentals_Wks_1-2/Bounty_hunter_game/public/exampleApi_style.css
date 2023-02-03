@@ -28,6 +28,7 @@ body {
     height: 6rem;
     width: 12rem;
     padding: 1rem 0rem 0rem 0rem;
+    color: white;
 }
 
 #game_name {
@@ -47,12 +48,14 @@ body {
     height: 20rem;
     width: 10rem;
     padding: 1rem 3rem 1rem 0rem;
+    color: white;
 }
 
 #change_image {
     height: 10rem;
     width: 7rem;
     padding: 0rem 0rem 0rem 0rem;
+    color: white;
 }
 
 /* Question and Answer Box */
