@@ -30,9 +30,6 @@ const initializeGame = async () => {
     // Get Home World Link and Splice for Home World Number
     homeWorldLink = characterData.homeworld;
 
-    //console.log(homeWorldLink);
-    //console.log(homeWorldLink.substring(homeWorldLink.length - 3));
-
     const string = homeWorldLink.substring(homeWorldLink.length - 3);
 
     const newString = string.replace('/', '');
@@ -81,7 +78,7 @@ function play() {
 
     remove();
 
-    // Add the question box{
+    // Add the question box
     const element = document.querySelector('.text_box');
     element.style.border = ".21rem solid rgb(42, 4, 85)";
     element.style.background = 'rgb(49, 4, 231)';
@@ -92,14 +89,19 @@ function play() {
 
 function checkAnswers() {
 
+    // Check if the game was finshed and if so, then start over.
     if (gameStart == false) {
 
+        // Console.log Start Over
         console.log("Start Over");
 
+        // Clear Data
         clear();
 
+        // Repopulate Data
         initializeGame();
 
+        // If not finished, then check the answers and set the game to finished.
     } else {
 
         // Get Player Answer
