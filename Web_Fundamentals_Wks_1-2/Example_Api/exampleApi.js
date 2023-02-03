@@ -1,6 +1,18 @@
+var againButton = document.querySelector("#button");
+
 function remove_mes() {
     var element_to_remove = document.getElementsByClassName("remove_message_box");
     element_to_remove[0].remove();
+
+    // Add the question box
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+        const element = document.querySelector('.text_box');
+        element.style.border = ".21rem solid rgb(42, 4, 85)";
+        element.style.background = 'rgb(49, 4, 231)';
+        element.style.backgroundImage = 'linear-gradient(to right, rgb(0, 0, 0), #480a94 20% 40%, rgb(103, 40, 205), #480a94, rgb(20, 9, 39))';
+    });
+
 };
 
 function play() {
@@ -10,40 +22,32 @@ function play() {
     var homeWorldNum;
     var homeWorldLink;
     var homeWorld;
+    var correctOrNot = false;
     
     const initializeGame = async () => {
 
-        // Add the question box
-        const button = document.querySelector('button');
-        button.addEventListener('click', () => {
-            const element = document.querySelector('.text_box');
-            element.style.border = ".21rem solid rgb(42, 4, 85)";
-            element.style.background = 'rgb(49, 4, 231)';
-            element.style.backgroundImage = 'linear-gradient(to right, rgb(0, 0, 0), #480a94 20% 40%, rgb(103, 40, 205), #480a94, rgb(20, 9, 39))';
-        });
-
         // Get random number for character
         const random_num = Math.ceil(Math.random() * 82);
-        console.log(random_num);
+        //console.log(random_num);
 
         // Fetch Character
         var response_1 = await fetch(`https://swapi.dev/api/people/${random_num}/`);
         characterData = await response_1.json();
-        console.log(characterData);
+        //console.log(characterData);
     
         // Get Character name
         characterName = characterData.name;
-        console.log(characterName);
+        //console.log(characterName);
 
         // Update Character name in Div
         const question = document.querySelector(".character_name");
-        question.innerText = `What is the\n home world of:\n ${characterName}`;
+        question.innerText = `What is the\n home world of:\n ${characterName}?`;
 
         // Get Home World Link and Splice for Home World Number
         homeWorldLink = characterData.homeworld;
 
-        console.log(homeWorldLink);
-        console.log(homeWorldLink.substring(homeWorldLink.length - 3));
+        //console.log(homeWorldLink);
+        //console.log(homeWorldLink.substring(homeWorldLink.length - 3));
 
         const string = homeWorldLink.substring(homeWorldLink.length - 3);
 
@@ -51,23 +55,45 @@ function play() {
 
         // Parce Home World Number String into Integer
         homeWorldNum = parseInt(newString);
-        console.log(homeWorldNum);
+        //console.log(homeWorldNum);
 
         // Get Home World Data
         var response_2 = await fetch(`https://swapi.dev/api/planets/${homeWorldNum}/`);
         homeWorldData = await response_2.json();
-        console.log(homeWorldData);
+        //console.log(homeWorldData);
 
         // Get Home World Name
         homeWorld = homeWorldData.name;
-        console.log(homeWorld);
+        //console.log(homeWorld);
+
+        // Update Placeholder to Guide Player
+        const placeHolderText = document.getElementById("input").placeholder = "Enter Home World Here";
+
+        if (againButton.innerText == `Check Answer`) {
+
+            // Get Player Answer
+            const playerAnswer = document.getElementById("input").value;
+
+            // Check For Validity
+            console.log("This is home world: " + homeWorld);
+            console.log("This is player: " + playerAnswer);
+
+            if (homeWorld = playerAnswer) {
+                correctOrNot = true;
+
+                // Update Home world Box
+                const homeWorldVar = document.querySelector(".homeworld");
+                homeWorldVar.innerText = homeWorld;
+            };
+        };
+
+        console.log(correctOrNot);
 
         // Update Button to Say Check Answer
-        const again_button = document.querySelector("#button");
-        again_button.innerText = `Check Answer`;
+        againButton.innerText = `Check Answer`;
 
-        const placeHolderText = document.getElementById("input").placeholder = "Enter Home World Here";
-        
+        // Remove Button
+
         // console.log(data.results[choice].name);
         // document.getElementById('inner_container').innerText = data.results[choice].name
     
@@ -78,21 +104,43 @@ function play() {
 
     initializeGame();
 
-    function checkAnswer() {
+    // function checkAnswer() {
     
-        // Get input from text box
-    
-        // Compare it to the name data.name
-    
-        // If correct, add balloons in background / else if incorrect, show a frown face
-    
-        // Change the Icon to front by getElementById
-        // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1
-    
-        // Change the name of homeland
-    
-        // Change the Start button to Play Again
-    }
+    //     // Compare Correct Home World with Player Answer
+    //     var correctOrNot = false;
 
-    checkAnswer();
+    //     // Get Players Answer
+    //     const playerAnswer = document.getElementById("input").value;
+    //     console.log("This is home world: " + homeWorld);
+    //     console.log("This is player: " + playerAnswer);
+
+    //     if (againButton.innerText == `Check Answer`) {
+    //         if (homeWorld = playerAnswer) {
+    //             correctOrNot = true;
+
+    //             // Update Home world Box
+    //             const homeWorldVar = document.querySelector(".homeworld");
+    //             homeworld_var.innerText = homeWorld;
+    //         };
+    //     };
+
+    //     console.log(correctOrNot)
+
+    //     againButton.innerText = `Check Answer`;
+
+    //     // Get input from text box
+    
+    //     // Compare it to the name data.name
+    
+    //     // If correct, add balloons in background / else if incorrect, show a frown face
+    
+    //     // Change the Icon to front by getElementById
+    //     // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1
+    
+    //     // Change the name of homeland
+    
+    //     // Change the Start button to Play Again
+    // }
+
+    //checkAnswer();
 }
