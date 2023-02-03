@@ -93,17 +93,17 @@ body {
 /* Information inside of the Question and Answer Box */
 .character_name {
     color: white;
-    font-family: cursive;
+    font-family: Verdana;
     text-align: center;
-    font-size: .7rem;
+    font-size: .9rem;
     padding: 0rem 2rem 0rem 2rem;
 }
 
 .homeworld {
     color: white;
-    font-family: cursive;
+    font-family: Verdana;
     text-align: center;
-    font-size: .7rem;
+    font-size: .9rem;
     padding: 1rem 1.7rem 0rem 2rem;
 }
 
@@ -113,19 +113,21 @@ body {
     width: 20rem;
     border-radius: 2rem;
     text-align: center;
-    font-family: cursive;
-    font-size: 1rem;
+    font-family: Verdana;
+    font-size: .8rem;
+    font-weight: bold;
 }
 
 /* Button */
 #button {
     background: rgb(49, 4, 231);
-    color: #d2acff;
+    color: #ffffff;
     border: .1rem solid rgb(65, 4, 162);
-    font-family: cursive;
+    font-family: Verdana;
     margin: 1rem 0rem 1rem 0rem;
     padding: 1rem 3rem 1rem 4rem;
-    font-size: 1rem;
+    font-size: .8rem;
+    font-weight: bold;
     background-image:
     linear-gradient(
         to right, 
@@ -144,12 +146,12 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: cursive;
+    font-family: Verdana;
     padding: 1rem;
     background-color: rgb(70, 14, 167);
     position: fixed;
-    top: 25%;
-    left: 25%;
+    top: 20%;
+    left: 35%;
     color: white;
     background-image:
     linear-gradient(
@@ -172,17 +174,17 @@ body {
 #rules_text {
     margin: 1rem 0rem 0rem 0rem;
     text-align: center;
-    color: rgb(221, 198, 251);
+    color: rgb(255, 255, 255);
     font-size: 1.3rem;
 }
 
 #lets_play_button {
     background: rgb(49, 4, 231);
-    color: #d2acff;
+    color: #ffffff;
     border: .1rem solid black;
     box-shadow: .5rem .5rem .5rem #000000;
     padding: .4rem .4rem .4rem .4rem ;
-    font-family: cursive;
+    font-family: Verdana;
     margin: 1rem 1rem 0rem 0rem;
 }
 

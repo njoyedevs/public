@@ -48,7 +48,7 @@ const initializeGame = async () => {
     //console.log(homeWorld);
 
     // Update Text Box Placeholder
-    document.getElementById("input").placeholder = "Enter Home World Here";
+    document.getElementById("input").placeholder = "Enter Home World Here...";
 
     // Update gameStart variable to True
     gameStart = true;
