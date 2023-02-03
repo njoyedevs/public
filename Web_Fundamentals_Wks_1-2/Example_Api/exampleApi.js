@@ -5,14 +5,22 @@ var characterData;
     var homeWorldLink;
     var homeWorld;
     var gameStart = false;
+    var remove = true;
     var correctOrNot = false;
-    console.log(correctOrNot);
+    //console.log(correctOrNot);
     var againButton = document.querySelector("#button");
 
 function play() {
 
-    var element_to_remove = document.getElementsByClassName("remove_message_box");
-    element_to_remove[0].remove();
+    if (remove == true) {
+
+        // Remove the Message Box
+        var element_to_remove = document.getElementsByClassName("remove_message_box");
+        element_to_remove[0].remove(); 
+
+        // Only remove once
+        remove = false;
+    }
 
     // Add the question box{
     const element = document.querySelector('.text_box');
@@ -24,7 +32,7 @@ function play() {
 
         // Get random number for character
         const random_num = Math.ceil(Math.random() * 82);
-        console.log(random_num);
+        //console.log(random_num);
 
         // Fetch Character
         var response_1 = await fetch(`https://swapi.dev/api/people/${random_num}/`);
@@ -63,11 +71,11 @@ function play() {
         //console.log(homeWorld);
 
         // Update Placeholder to Guide Player
-        const placeHolderText = document.getElementById("input").placeholder = "Enter Home World Here";
+        document.getElementById("input").placeholder = "Enter Home World Here";
 
         // Update gameStart variable to True
         gameStart = true;
-        console.log(gameStart);
+        //console.log(gameStart);
     };
 
     initializeGame();
@@ -75,7 +83,15 @@ function play() {
 
 function checkAnswers() {
 
-    if (gameStart == true) {
+    if (gameStart == false) {
+
+        console.log("Winning");
+
+        gameStart = true;
+
+        play();
+
+    } else {
 
         // Get Player Answer
         const playerAnswer = document.getElementById("input").value;
@@ -95,6 +111,10 @@ function checkAnswers() {
             const homeWorldVar = document.querySelector(".homeworld");
             homeWorldVar.innerText = `Correct! ${homeWorld}!`;
 
+            againButton.innerText = "Play Again!";
+
+            gameStart = false;
+
         } else {
             // Change Validation Variable
             correctOrNot = false;
@@ -104,6 +124,9 @@ function checkAnswers() {
             const homeWorldVar = document.querySelector(".homeworld");
             homeWorldVar.innerText = `Incorrect!\nPlay Again!`;
 
+            againButton.innerText = "Play Again!";
+
+            gameStart = false;
         }
     };
 };
