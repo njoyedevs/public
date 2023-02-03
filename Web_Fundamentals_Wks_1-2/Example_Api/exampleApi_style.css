@@ -11,12 +11,17 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
     box-shadow: none;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+}
+
 #container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: black;
 }
 
 /* Style the video: 100% width and height to cover the entire window */
@@ -94,6 +99,7 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
 .character_name {
     color: white;
     font-family: cursive;
+    text-align: center;
     font-size: .7rem;
     padding: 0rem 2rem 0rem 2rem;
 }
@@ -101,6 +107,7 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
 .homeworld {
     color: white;
     font-family: cursive;
+    text-align: center;
     font-size: .7rem;
     padding: 1rem 1.7rem 0rem 2rem;
 }
