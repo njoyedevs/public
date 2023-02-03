@@ -93,15 +93,17 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
 .character_name {
     color: white;
     font-family: cursive;
-    font-size: 1.5rem;
-    padding: 0rem 0rem 0rem 0rem;
+    font-size: 1.2rem;
+    padding: 0rem 2rem 0rem 2rem;
 }
 
 .homeworld {
     color: white;
     font-family: cursive;
-    font-size: 1rem;
-    padding: 4rem 0rem 0rem 0rem;
+    font-size: 2rem;
+    padding: 1rem 2.2rem 0rem 2.2rem;
+    color: rgb(228, 187, 248);
+    font-weight: bold
 }
 
 #input {
@@ -120,7 +122,7 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
     font-family: cursive;
     margin: 1rem 0rem 1rem 0rem;
     padding: 1rem 3rem 1rem 4rem;
-    font-size: 2rem;
+    font-size: 1rem;
     background-image:
     linear-gradient(
         to right, 
@@ -180,3 +182,5 @@ Video Functionality - https://www.w3schools.com/howto/howto_css_fullscreen_video
     font-family: cursive;
     margin: 1rem 1rem 0rem 0rem;
 }
+
+
