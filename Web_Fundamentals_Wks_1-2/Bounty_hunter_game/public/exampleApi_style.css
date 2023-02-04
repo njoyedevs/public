@@ -3,6 +3,7 @@ Bounty Hunter Image From - https://imgbin.com/png/7q6HuiP8/boba-fett-luke-skywal
 Yoda Image From - https://imgbin.com/png/eP3KdQyV/star-wars-png
 Star Wars Logo From - https://www.pngfind.com/download/ibiRiTh_star-wars-logo-star-wars-hd-png-download/ 
 Background Images From - https://www.vecteezy.com/video/15396991-the-speed-of-light-from-the-longitudinal-lines-of-white-on-a-black-background
+Background Image From - https://pixabay.com/videos/planet-space-universe-background-124685/
 */
 
 * {
@@ -14,10 +15,10 @@ Background Images From - https://www.vecteezy.com/video/15396991-the-speed-of-li
 /* Style the video: 100% width and height to cover the entire window */
 #myVideo {
     position: fixed;
-    right: 25;
+    right: 2;
     bottom: 0;
     height: 100vh;
-    opacity: 20%;
+    opacity: 25%;
 }
 
 .overlay{
