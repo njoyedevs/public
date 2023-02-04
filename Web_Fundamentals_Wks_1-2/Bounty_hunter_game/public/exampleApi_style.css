@@ -2,12 +2,31 @@
 Bounty Hunter Image From - https://imgbin.com/png/7q6HuiP8/boba-fett-luke-skywalker-jango-fett-star-wars-jabba-the-hutt-png
 Yoda Image From - https://imgbin.com/png/eP3KdQyV/star-wars-png
 Star Wars Logo From - https://www.pngfind.com/download/ibiRiTh_star-wars-logo-star-wars-hd-png-download/ 
+Background Images From - https://www.vecteezy.com/video/15396991-the-speed-of-light-from-the-longitudinal-lines-of-white-on-a-black-background
 */
 
 * {
     padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 25;
+    bottom: 0;
+    height: 100vh;
+    opacity: 20%;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(48,25,52,0.75);
 }
 
 body {
@@ -25,16 +44,16 @@ body {
 
 /* Main Content */
 #logo_image {
-    height: 6rem;
-    width: 12rem;
-    padding: 1rem 0rem 0rem 0rem;
+    height: 4rem;
+    width: 8rem;
+    padding: .5rem 0rem 0rem 0rem;
     color: white;
 }
 
 #game_name {
     color: rgb(147, 137, 21);
     height: 2rem;
-    padding: 1rem 0rem 0rem 0rem;
+    padding: .5rem 0rem 0rem 0rem;
 }
 
 #image_box {
@@ -45,15 +64,16 @@ body {
 }
 
 #main_image {
-    height: 20rem;
-    width: 10rem;
-    padding: 1rem 3rem 1rem 0rem;
+    height: 19rem;
+    width: 8rem;
+    padding: 0rem 1rem 0rem 0rem;
+    margin: 3rem 0rem 0rem 0rem;
     color: white;
 }
 
 #change_image {
-    height: 10rem;
-    width: 7rem;
+    height: 12rem;
+    width: 14rem;
     padding: 0rem 0rem 0rem 0rem;
     color: white;
 }
@@ -73,7 +93,7 @@ body {
     justify-content: center;
     flex-direction: column;
     padding: 1rem 1rem 1rem 1rem;
-    margin: 0rem 0rem 1rem 0rem;
+    margin: 0rem 0rem .5rem 0rem;
 }
 
 .question_box_active {
@@ -96,7 +116,7 @@ body {
     font-family: Verdana;
     text-align: center;
     font-size: .9rem;
-    padding: 0rem 2rem 0rem 2rem;
+    padding: 0rem 1rem 0rem 1rem;
 }
 
 .homeworld {
@@ -104,13 +124,13 @@ body {
     font-family: Verdana;
     text-align: center;
     font-size: .9rem;
-    padding: 1rem 1.7rem 0rem 2rem;
+    padding: 1rem 1rem 0rem 1rem;
 }
 
 /* Input */
 #input {
-    height: 3rem;
-    width: 20rem;
+    height: 2rem;
+    width: 15rem;
     border-radius: 2rem;
     text-align: center;
     font-family: Verdana;
@@ -125,8 +145,8 @@ body {
     color: #ffffff;
     border: .21rem solid rgb(42, 4, 85);
     font-family: Verdana;
-    margin: 1rem 0rem 1rem 0rem;
-    padding: 1rem 3rem 1rem 4rem;
+    margin: .5rem 0rem .5rem 0rem;
+    padding: .7rem 3rem .7rem 4rem;
     font-size: .8rem;
     font-weight: bold;
     background-image:
@@ -144,8 +164,8 @@ body {
 .score {
     color: white;
     font-family: Verdana;
-    margin: .5rem 0rem .5rem 0rem;
-    padding: 1rem 2rem 1rem 2rem;
+    margin: 0rem 0rem .5rem 0rem;
+    padding: .7rem 2rem .7rem 2rem;
     font-size: .8rem;
     font-weight: bold;
 }
