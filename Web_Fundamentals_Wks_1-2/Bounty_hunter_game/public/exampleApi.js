@@ -8,6 +8,8 @@ var gameStart = false;
 var homeWorldVar = document.querySelector(".homeworld");
 var againButton = document.querySelector("#button");
 var scoreBox = document.querySelector(".score");
+var logoImage = document.querySelector("#logo_image");
+var secretAnswer = document.querySelector(".secret_answer")
 var correctCount = 0;
 
 const initializeGame = async () => {
@@ -100,6 +102,7 @@ function clear() {
     document.getElementById("input").value = "";
     document.getElementById("input").placeholder = "Enter Home World Here";
     againButton.innerText = "Check Answer";
+    secretAnswer.innerText = "";
 };
 
 function remove() {
@@ -162,3 +165,13 @@ function checkAnswers() {
         gameStart = false;
     };
 };
+
+function flipAnswer() {
+
+    if (secretAnswer.innerText == homeWorld) {
+        secretAnswer.innerText = "";
+    } else {
+        secretAnswer.innerText = homeWorld;
+    }
+
+}

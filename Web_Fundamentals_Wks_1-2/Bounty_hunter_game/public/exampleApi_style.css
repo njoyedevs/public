@@ -158,6 +158,11 @@ body {
     font-weight: bold;
 }
 
+/* Secret Answer */
+.secret_answer {
+    color: white;
+}
+
 /* This is the alert message */
 
 .remove_message_box {

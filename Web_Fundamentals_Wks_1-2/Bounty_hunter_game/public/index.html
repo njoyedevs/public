@@ -14,7 +14,7 @@
           <a id="rules_text">Enter the<br>home world<br>name for<br>Bounty Hunter's<br>next target.</a>
           <button id="lets_play_button" onclick="play()" >Let's Play</button>
       </div>
-      <img class="image" id="logo_image" src="./assets/logo.png" alt="Star Wars Image">
+      <img class="image" id="logo_image" onclick="flipAnswer()" src="./assets/logo.png" alt="Star Wars Image">
       <h1 id="game_name">Bounty Hunter Game</h1>
       <div id="image_box">
           <img class="image" id="main_image" src="./assets/bounty_hunter.png" alt="Bounty Hunter Image">
@@ -29,6 +29,7 @@
       <input id="input" placeholder="Click Play to Begin" type="text">
       <button id="button" onclick="checkAnswers()"><strong>Check Answer</strong></button>
       <div class="score"></div> 
+      <div class="secret_answer"></div>
   </div>
   <script src="./exampleApi.js"></script>
   </body>
