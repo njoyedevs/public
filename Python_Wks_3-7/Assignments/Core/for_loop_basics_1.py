@@ -39,3 +39,12 @@ mult = 3
 for i in range(lowNum, highNum, 1):
     if i%mult ==0:
         print(i)
+        
+a = {
+    1: "One",
+    2: "Two",
+    3: "Three"    
+}
+
+print(list(a.keys())[0])
+print(a.get())
