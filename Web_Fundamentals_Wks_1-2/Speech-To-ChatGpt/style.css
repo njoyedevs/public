@@ -25,7 +25,7 @@
     border: .21rem solid rgb(42, 4, 85);
     font-family: Verdana;
     margin: 1rem 0rem 1rem 0rem;
-    padding: .7rem 3rem .7rem 4rem;
+    padding: .7rem 3rem .7rem 3rem;
     font-size: .8rem;
     font-weight: bold;
     background-image:
@@ -47,10 +47,6 @@
     text-align: center;
 }
 
-#interim {
-
-}
-
-#final {
-    padding: 0rem 0rem 60rem 0rem;
+#select_label {
+    color: white;
 }

@@ -10,10 +10,15 @@
     <body>
         <div class="container">
             <h1 class="heading">Speech-to-ChatGPT</h1>
-            <button class="buttons" id="start">Start</button>
-            <button class="buttons" id="stop">Stop</button>
+            <button class="buttons" id="start" onclick="speech_to_text()">Start Recording</button>
+            <button class="buttons" id="stop">Stop Recording</button>
             <div class="speech_text_window"><p id="interim"></p></div>
             <div class="speech_text_window"><p id="final"></p></div>
+            <button class="buttons" id="get_ChatGPT" onclick="getChatGPT()">Get ChatGPT</button>
+            <!-- <label id="select_label" for="voices">Choose a voice:</label>
+            <select name="voice_select" class="select" id="voices">
+            </select> -->
+            <button class="buttons" id="start_recording" onclick="text_to_speech()">Playback</button>
         </div>
         <script src="function.js"></script>
     </body>
