@@ -1,6 +1,6 @@
 class BankAccount:
     
-    instances = []
+    # instances = []
     accounts = []
     
     # don't forget to add some default values for these parameters!
@@ -10,7 +10,7 @@ class BankAccount:
         self.int_rate = int_rate
         self.balance = balance
         # Both work 
-        self.__class__.instances.append(self)
+        # self.__class__.instances.append(self)
         BankAccount.accounts.append(self)
     def deposit(self, amount):
         # your code here
