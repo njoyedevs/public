@@ -36,5 +36,3 @@ function isPalindrome(str) {
     return true
 }
 console.log(isPalindrome(str4))
-
-// test_f(str1)
