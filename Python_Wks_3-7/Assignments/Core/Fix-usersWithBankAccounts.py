@@ -59,7 +59,7 @@ class User:
         
         self.accounts = {}
         
-        if f"{self.name}:{self.account_nm}" not in self.user_accounts.keys() and f"{self.name}:{self.account_nm}" not in self.user_accounts.keys():
+        if f"{self.name}:{self.account_nm}" not in self.accounts.keys() or f"{self.name}:{self.account_nm}" not in User.user_accounts.keys():
             self.user_accounts[f"{self.name}:{self.account_nm}"] = self.account
             self.accounts[f"{self.name}:{self.account_nm}"] = self.account
         else:
