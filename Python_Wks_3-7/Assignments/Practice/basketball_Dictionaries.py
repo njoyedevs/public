@@ -2,13 +2,10 @@ class Player:
     
     def __init__(self, plyr_info_dict):
         
-        self.plyr_info_dict = plyr_info_dict
         self.name = plyr_info_dict["name"]
         self.age = plyr_info_dict["age"]
         self.position = plyr_info_dict["position"]
         self.team = plyr_info_dict["team"]
-        
-        # players.append(self.plyr_dict)
         
     def display_Info(self):
         print(self.name)
@@ -16,6 +13,23 @@ class Player:
         print(self.position)
         print(self.team)
         
+    # Not required for the assignment but useful
+    # __repr__(self) is a python system method that 
+    # tells python how to handle representing that class 
+    # when, for example the object is printed to the terminal.
+    # def __repr__(self):
+    #     display = f"Player: {self.name}, {self.age} y/o, pos: {self.position}, team: {self.team}"
+    #     return display
+        
+    @classmethod
+    def add_players(cls, plyrs_dict):
+        
+        player_obj = []
+        for dict in plyrs_dict:
+            player_obj.append(cls(dict))
+            
+        return player_obj
+    
     @classmethod
     def get_team(cls, team_list):
         
@@ -26,11 +40,9 @@ class Player:
             # print(team_list[player])
 
             plyr = cls(team_list[player])
-            # plyr.display_Info()
-            # print(kevin.plyr_info_dict)
+            
+            new_team.append(plyr)
 
-            new_team.append(plyr.plyr_info_dict)
-        # print(new_team)
         return new_team
         
 players = [
@@ -78,24 +90,9 @@ players = [
     }
 ]
 
-def build_test_team():
-    
-    test_team = []
-    
-    for player in range(len(players)):
-        
-        # print(players[player])
-
-        plyr = Player(players[player])
-        # plyr.display_Info()
-
-        test_team.append(plyr.plyr_info_dict)
-    # print(test_team)
-    
-    return test_team
-# print(build_test_team())
+test_team = Player.add_players(players)
+print(test_team)
 
 # Ninja Bonus: Add an @class method called
 # get_team(cls, team_list) that, given a list of dictionaries populates and returns a new list of Player objects.
-print(Player.get_team(build_test_team()))
-
+print(Player.get_team(players))
