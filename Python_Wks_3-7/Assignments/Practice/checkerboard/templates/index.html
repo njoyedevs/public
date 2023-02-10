@@ -1,21 +1,22 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playground</title>
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
     <style>
         body{
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             padding: 5rem 0rem 0rem 0rem;
         }
         table tr td{
-            width: 1rem;
-            height: 1rem;
+            width: 4rem;
+            height: 4rem;
         }
         .color1{
             background-color: black;
@@ -23,10 +24,17 @@
         .color2{
             background-color: red;
         }
+        h1 {
+            background-color: black;
+            color: red;
+
+
+        }
     </style>
 </head> 
 <body>
-        <table>
+    <h1>*** CHECKERBOARD ***</h1>
+    <!-- <table>
     {% for i in range(5): %}
         <tr>
             {% for j in range(5): %}
@@ -41,39 +49,39 @@
             {% endfor %}
         </tr>
     {% endfor %}
-            </table> 
+    </table>  -->
     <table>
-    {% for i in range(height): %}
+    {% for i in range(row): %}
         <tr>
-        {% for j in range(width): %}
+        {% for j in range(col): %}
             <td class="color{{ (i+j)%2+1 }}"></td>
         {% endfor %}
         </tr>
     {% endfor %}
     </table>
 </body>
-</html> --> 
+</html> 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="./style.css">
     <title>Checkerboard</title>
 </head>
 <body>
-    <h1 style="background-color: {{color_two}}; color: {{color_one}};">*** CHECKERBOARD ***</h1>
+    <h1>*** CHECKERBOARD ***</h1>
     <table>
         <tbody>
             {% for i in range(0,row) %}
                 <tr>
                     {% for x in range(0,col) %}
                         {% if (x+i) % 2 == 0 %}
-                            <td style="background-color: {{color_one}};"></td>
+                            <td class="black"></td> 
                         {% else %}
-                            <td style="background-color: {{color_two}};"></td>
+                            <td class="red"></td>
                         {%  endif %}
                     {% endfor %}
                 </tr>
@@ -81,4 +89,4 @@
         </tbody>
     </table>
 </body>
-</html>
+</html> -->
