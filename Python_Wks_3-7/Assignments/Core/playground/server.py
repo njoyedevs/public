@@ -14,8 +14,7 @@ def input_number_boxes(num):
 
 @app.route('/play/<int:num>/<color>')
 def input_num_color_boxes(num, color):
-    print(color)
-    return render_template("index.html", value=num, background_color=color)
+    return render_template("index.html", value=num, color=color)
 
 # @app.route('/users', methods=['POST'])
 # def create_user():
