@@ -6,14 +6,15 @@ app.secret_key = "Keep it secret, keep it safe"
 
 @app.route('/play')
 def index():
-    return render_template("index.html", value=3, color="blue")
+    return render_template("index.html", value=3)
 
 @app.route('/play/<int:num>')
 def input_number_boxes(num):
-    return render_template("index.html", value=num, color="blue")
+    return render_template("index.html", value=num)
 
 @app.route('/play/<int:num>/<color>')
 def input_num_color_boxes(num, color):
+    print(color)
     return render_template("index.html", value=num, background_color=color)
 
 # @app.route('/users', methods=['POST'])
