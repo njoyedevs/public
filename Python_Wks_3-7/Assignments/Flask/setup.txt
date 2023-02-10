@@ -4,24 +4,30 @@
 
 # 2. pipenv install flask iin project folder terminal
 
-#***NOTE*** If your receive an error using pipenv,
+#***Optional NOTE*** If your receive an error using pipenv,
 #you may need to import it as a module first before
 # it can be run as a script. You can do so using 
 # the -m flag as below. You will need to do this
 #  every time you use pipenv.
-# 3. python -m pipenv <command to use>
+# python -m pipenv <command to use>
 
 #Once we have installed the Flask package, we need
 #to activate our environment in order to use it. We
 # can achieve this with the following command.
-# 4. pipenv shell
+# 3. pipenv shell
 
+# Once in shell, activate the server via script call.  
+# This must be ran from the project folder where the
+# server.py is located. Go to # 6 when ready to exit
+# 4. python server.py
+
+#***If needing to see packages***
 #To check what is installed in your virtual environment,
 #with your virtual environment activated (pipenv shell),
 # you can type the command, pip list and you will see a
 #  list of what is currently installed.
-# 5. pip list
+# pip list
 
 #To deactivate the virtual environment we can use exit.
 #Our bash window should look something like this.
-# 6. exit
+# 5. exit or ctrl + c
