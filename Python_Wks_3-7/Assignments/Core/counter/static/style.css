@@ -17,11 +17,13 @@ h1 {
 }
 
 .button_box {
+    display: flex;
+    align-items: center;
     margin: 0rem 0rem 0rem 0rem;
 }
 
 #but1 {
-    margin: 0rem 0rem 0rem 0rem;
+    margin: 0rem 3rem 0rem 0rem;
     padding: .5rem;
     border-radius: 5%;
     background-color: rgb(62, 136, 232);
@@ -29,7 +31,7 @@ h1 {
 }
 
 #but2 {
-    margin: 0rem 0rem 0rem 0rem;
+    margin: 0rem 0rem 0rem 3rem;
     padding: .5rem;
     border-radius: 5%;
     background-color: rgb(193, 41, 41);

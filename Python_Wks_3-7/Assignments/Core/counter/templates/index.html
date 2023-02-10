@@ -5,18 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
     <h1>Counter</h1>
     <h3>{{ counter }}</h3>
     <div class="button_box">
+        <div class="box_1">
         <form action="/click" method="post">
-            <button id="but1" class="buttons" type="submit">Click</button>
+            <button id="but1" class="buttons">Click</button>
         </form>
+        </div>
+        <div class="box_2">
         <form action="/reset" method="post"></form>
-            <button id="but2" class="buttons" type="submit">Reset</button>
+            <button id="but2" class="buttons" >Reset</button>
         </form>
+        </div>
     </div>
     <!-- <script src="functions.js"></script>    -->
     <!-- onmouseover="hover_1()" onmouseout="mouseout_1()" onclick="click()"  -->

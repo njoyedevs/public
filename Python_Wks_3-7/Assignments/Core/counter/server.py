@@ -13,7 +13,7 @@ def index():
 def click():
     return redirect("/counter")
 
-@app.route("/reset", methods=["POST"])
+@app.route("/reset")
 def reset():
     return redirect("/destroy_session")
 
