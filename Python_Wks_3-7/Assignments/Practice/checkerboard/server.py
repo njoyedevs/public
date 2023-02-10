@@ -4,23 +4,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html",row=8,col=8,color_one='red',color_two='black')
+    return render_template("index.html",row=8,col=8,color1='red',color2='black')
 
 @app.route('/<int:x>')
 def row(x):
-    return render_template("index.html",row=x,col=8,color_one='red',color_two='black')
+    return render_template("index.html",row=x,col=8,color1='red',color2='black')
 
 @app.route('/<int:x>/<int:y>')
 def row_col(x,y):
-    return render_template("index.html",row=x,col=y,color_one='red',color_two='black')
+    return render_template("index.html",row=x,col=y,color1='red',color2='black')
 
-@app.route('/<int:x>/<int:y>/<string:one>')
-def row_col_one(x,y,one):
-    return render_template("index.html",row=x,col=y,color_one=one,color_two='black')
+@app.route('/<int:x>/<int:y>/<string:color1>')
+def row_col_one(x,y,color1):
+    return render_template("index.html",row=x,col=y,color1=color1,color2='black')
 
-@app.route('/<int:x>/<int:y>/<string:one>/<string:two>')
-def row_col_two(x,y,one,two):
-    return render_template("index.html",row=x,col=y,color_one=one,color_two=two)
+@app.route('/<int:x>/<int:y>/<string:color1>/<string:color2>')
+def row_col_two(x,y,color1,color2):
+    return render_template("index.html",row=x,col=y,color1=color1,color2=color2)
 
 if __name__=="__main__":
     app.run(debug=True)
