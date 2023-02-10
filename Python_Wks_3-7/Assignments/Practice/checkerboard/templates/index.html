@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
     </style>
 </head> 
 <body>
-    <!-- <table>
+        <table>
     {% for i in range(5): %}
         <tr>
             {% for j in range(5): %}
@@ -41,7 +41,7 @@
             {% endfor %}
         </tr>
     {% endfor %}
-    </table> -->
+            </table> 
     <table>
     {% for i in range(height): %}
         <tr>
@@ -52,4 +52,33 @@
     {% endfor %}
     </table>
 </body>
-</html>
+</html> --> 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Checkerboard</title>
+</head>
+<body>
+    <h1 style="background-color: {{color_two}}; color: {{color_one}};">*** CHECKERBOARD ***</h1>
+    <table>
+        <tbody>
+            {% for i in range(0,row) %}
+                <tr>
+                    {% for x in range(0,col) %}
+                        {% if (x+i) % 2 == 0 %}
+                            <td style="background-color: {{color_one}};"></td>
+                        {% else %}
+                            <td style="background-color: {{color_two}};"></td>
+                        {%  endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> -->

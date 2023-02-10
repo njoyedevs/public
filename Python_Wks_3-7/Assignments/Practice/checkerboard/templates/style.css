@@ -1,4 +1,4 @@
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -26,4 +26,33 @@ h1 {
     width: 2rem;
     height: 2rem;
     margin: 0rem;
+} */
+
+*{
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+
+body{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    padding: 10px;
+    margin: 15px 0;
+}
+
+table{
+    border-collapse: collapse;
+
+}
+
+td{
+    width: 60px;
+    height: 60px;
 }
