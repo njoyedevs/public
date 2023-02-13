@@ -10,7 +10,9 @@ def index():
     session["location"] = "San Jose"
     session["favorite_lang"] = "Python"
     session["Comment"] = ""
-    return render_template("index.html", name=session["name"], location=session["location"], fav_lang=session["favorite_lang"], comment=session["Comment"])
+    session["key"] = "result"
+    print(request.form)
+    return render_template("index.html", name=session["name"], location=session["location"], fav_lang=session["favorite_lang"], comment=session["Comment"]) 
 
 @app.route("/click", methods=["POST"])
 def click():
@@ -18,10 +20,18 @@ def click():
 
 @app.route('/process')
 def process():
-    
-    return redirect("/result")
+    addy = ""
+    if session["key"] == "result":
+        addy = "result"
+    elif session["key"] == "index":
+        addy = "index"
+    print(request.form)
+    return redirect(f"/{addy}")
 
 @app.route('/result')
 def result():
-    
+    session["key"] = "index"
     return render_template("result.html", name=session["name"], location=session["location"], fav_lang=session["favorite_lang"], comment=session["Comment"])
+
+if __name__=="__main__":
+    app.run(debug=True)
