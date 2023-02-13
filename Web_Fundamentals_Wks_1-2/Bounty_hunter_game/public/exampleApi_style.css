@@ -13,8 +13,8 @@ Background Image From - https://pixabay.com/videos/planet-space-universe-backgro
 }
 
 .background_image {
-    background: url(imgs/my-background-image.png);
-    background-size: cover;
+    /* background: url(imgs/my-background-image.png); */
+    /* background-size: cover; */
 }
 
 body {
