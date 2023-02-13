@@ -47,14 +47,12 @@
     </style>
 </head>
 <body>
-    <div >
-        <form class="box" action="/click" method="post">
-            <h2 class="heading">{{ name }}</h2>
-            <p class="text">{{ location }}</p>
-            <p class="text">{{ fav_lang }}</p>
-            <p class="text">{{ comment }}</p>
-            <input class="button" type="submit" value="Button">
-        </form>
+    <div class="box">
+        <h2 class="heading">{{ session["name"] }}</h2>
+        <p class="text">{{ session["location"] }}</p>
+        <p class="text">{{ session["fav_lang"] }}</p>
+        <p class="text">{{ session["comment"] }}</p>
+        <a href="/reset" class="button">Button</a>
     </div>
 </body>
 </html>

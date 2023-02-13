@@ -9,13 +9,9 @@ def index():
     session["counter"] = 1
     return render_template("index.html", title="", counter=session["counter"])
 
-@app.route("/click", methods=["POST"])
+@app.route("/click")
 def click():
     return redirect("/counter")
-
-@app.route("/reset")
-def reset():
-    return redirect("/destroy_session")
 
 @app.route('/counter')
 def counter():

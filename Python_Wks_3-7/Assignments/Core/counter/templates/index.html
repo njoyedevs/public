@@ -9,20 +9,11 @@
 </head>
 <body>
     <h1>Counter</h1>
-    <h3>{{ counter }}</h3>
+    <h3>{{ session["counter"] }}</h3>
     <div class="button_box">
         <div class="box_1">
-        <form action="/click" method="post">
-            <button id="but1" class="buttons">Click</button>
-        </form>
-        </div>
-        <div class="box_2">
-        <form action="/reset" method="post"></form>
-            <button id="but2" class="buttons" >Reset</button>
-        </form>
-        </div>
+        <a href="/click" class="buttons" id="but1">Click</a>
+        <a href="/destroy_session" class="buttons" id="but2">Reset</a>
     </div>
-    <!-- <script src="functions.js"></script>    -->
-    <!-- onmouseover="hover_1()" onmouseout="mouseout_1()" onclick="click()"  -->
 </body>
 </html>
