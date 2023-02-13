@@ -30,7 +30,7 @@
             padding: .3rem 0rem .3rem 0rem;
             color: rgb(213, 186, 8);
         }
-        .labels {
+        .text {
             padding: .3rem 0rem .3rem 0rem;
             color: white;
         }
@@ -43,18 +43,15 @@
             border: 3px solid black;
             box-shadow:2px 2px 2px #01252b;
         }
-        #comments {
-            text-align: left;
-        }
     </style>
 </head>
 <body>
     <div >
         <form class="box" action="/click" method="post">
             <h2 class="heading">{{ name }}</h2>
-            <p class="location">{{ location }}</p>
-            <p class="language">{{ fav_lang }}</p>
-            <p class="comment">{{ comment }}</p>
+            <p class="text">{{ location }}</p>
+            <p class="text">{{ fav_lang }}</p>
+            <p class="text">{{ comment }}</p>
             <input class="button" type="submit" value="Button">
         </form>
     </div>

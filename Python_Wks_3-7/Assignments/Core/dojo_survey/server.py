@@ -6,13 +6,13 @@ app.secret_key = "safasl'ksdjf;oilsdajf;sdloifjj-09"
 
 @app.route('/')
 def index():
-    session["name"] = ""
-    session["location"] = "San Jose"
-    session["favorite_lang"] = "Python"
-    session["Comment"] = ""
+    session["name"] = request.form["name"]
+    session["location"] = request.form["location"]
+    session["fav_lang"] = request.form["fav_lang"]
+    session["comments"] = request.form["comments"]
     session["key"] = "result"
     print(request.form)
-    return render_template("index.html", name=session["name"], location=session["location"], fav_lang=session["favorite_lang"], comment=session["Comment"]) 
+    return render_template("index.html", name=session["name"], location=session["location"], fav_lang=session["fav_lang"], comment=session["comments"]) 
 
 @app.route("/click", methods=["POST"])
 def click():
