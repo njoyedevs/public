@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dojo Survey</title>
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
     <style>
         * {
             padding: 0;
@@ -16,6 +16,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 2rem;
         }
         .box {
             display: flex;
@@ -43,7 +44,7 @@
             border: 3px solid black;
             box-shadow:2px 2px 2px #01252b;
         }
-        #comments {
+        #comment {
             text-align: left;
         }
     </style>
@@ -53,7 +54,7 @@
         <form class="box" action="/click" method="post">
             <h2 class="heading">Dojo Survey</h2>
             <p class="labels">Name: </p>
-            <input class="name_text" name="name" type="text"">
+            <input class="name_text" name="name" type="text"/>
             <label class="labels" for="location">Dojo Location:</label>
             <select name="location" id="location">
                 <option value="sanjose">San Jose</option>
@@ -61,16 +62,15 @@
                 <option value="devner">Denver</option>
                 <option value="phoenix">Phoenix</option>
             </select>
-            <label class="labels" for="fav_lang">Dojo Location:</label>
+            <label class="labels" for="fav_lang">Favorite Language:</label>
             <select name="fav_lang" id="fav_lang">
                 <option value="python">Python</option>
                 <option value="javascript">Javascript</option>
                 <option value="java">Java</option>
                 <option value="c#">C#</option>
             </select>
-            <label class="labels" for="comments">Comments (optional):</label>
-            <textarea name="comments" id="comments">
-                {{ comment }}
+            <label class="labels" for="comment">Comments (optional):</label>
+            <textarea name="comment" id="comment">
             </textarea>
             <input class="button" type="submit" value="Button">
         </form>
