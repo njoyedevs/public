@@ -18,7 +18,6 @@ def index():
 def users():
     return render_template('read_all.html', users=User.get_all())
     
-    
 @app.route('/users/new')
 def new():
     return render_template('create.html')

@@ -9,13 +9,13 @@
 <body>
     <form action="/create/ninja" method="post">
         ...
-            <select name="dojo_id">
+        <select name="dojo_id">
             <!-- Need to create an option list for the user to select a dojo. -->
             <!-- Note that we are passing the dojo id into the value -->
-            {% for ninja in dojo %}
-            <option value={{ninja.id}}>{{ninja.name}}</option>
+            {% for dojo in dojos %}
+            <option value={{dojo.id}}>{{dojo.name}}</option>
             {% endfor %}
-            </select>
-        </form>
+        </select>
+    </form>
 </body>
 </html>
