@@ -14,6 +14,23 @@ class Friend:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM friends;"
+        # query = "SELECT * FROM friends WHERE id=1"
+        # query = "UPDATE friends SET first_name='Bryanna' WHERE id=3"
+        
+        ############## Prepared Statements ######################
+        # # Example when needing to develop prepared statements
+        # query = "SELECT * FROM users WHERE email = %(email)s;"
+        
+        # # the placeholder variable is called email
+        # # it must match the key name in the data dictionary
+        # data = { 
+        #     # this 'email' Key in data must be named to match the placeholder in the query.
+        #     'email' : request.form['email'] 
+        # }
+        
+        # results = connectToMySQL('first_flask').query_db(query, data)
+        #########################################################
+        
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL('first_flask').query_db(query)
         print(results)
