@@ -1,16 +1,8 @@
-from flask import Flask, render_template
+# Import app variable from __init__.py via flask_app folder
+from flask_app import app
 
-# import the class from friend.py
-from friend import Friend
-
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    # call the get all classmethod to get all friends
-    friends = Friend.get_all()
-    print(friends)
-    return render_template("index.html")
+# Import the controller
+from flask_app.controllers import friends_controller
 
 if __name__ == "__main__":
     app.run(debug=True)
