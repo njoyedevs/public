@@ -28,3 +28,14 @@ def create_friend():
     Friend.save(data)
     # Don't forget to redirect after saving to the database.
     return redirect('/')
+
+@app.route('/friends/update',methods=['POST'])
+def update():
+    Friend.update(request.form)
+    return redirect('/')
+
+# Path variable in the route is designated as an int.
+@app.route('/friends/delete/<int:friend_id>')
+def delete(friend_id):
+    Friend.delete(friend_id)
+    return redirect('/')
