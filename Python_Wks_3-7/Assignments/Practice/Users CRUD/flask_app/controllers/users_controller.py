@@ -8,7 +8,7 @@ from flask_app import app
 # def index():
 #     users = User.get_all()
 #     print(users)
-#     return render_template("index.html", all_friends = users)
+#     return render_template("index.html", users = users)
 
 @app.route('/')
 def index():
@@ -16,7 +16,7 @@ def index():
 
 @app.route('/users')
 def users():
-    return render_template('read_all.html', all_friends=User.get_all())
+    return render_template('read_all.html', users=User.get_all())
     
     
 @app.route('/users/new')
@@ -26,24 +26,34 @@ def new():
 @app.route('/users/create', methods=["POST"])
 def create():
     print(request.form)
-    User.save(request.form)
-    return redirect(f"/users/show/{request.form['id']}")
+    id = User.save(request.form)
+    return redirect(f"/users/{id}")
 
 @app.route('/users/<int:id>/edit')
 def edit(id):
     data = {
         "id":id
     }
-    return render_template('edit.html', all_friends=User.get_one(data))
+    return render_template('edit.html', users=User.get_one(data))
 
-@app.route('/users/show/<int:id>')
+@app.route('/users/<int:id>')
 def show(id):
     data = {
         "id":id
     }
-    return render_template('show_user.html', all_friends=User.get_one(data))
+    return render_template('show_user.html', users=User.get_one(data))
 
 @app.route('/users/update', methods=["POST"])
 def update():
     User.update(request.form)
     return redirect('/users')
+
+@app.route('/users/<int:id>/destroy/')
+def delete(id):
+    
+    data = {
+        'id': id
+    }
+    
+    User.delete(data)
+    return redirect('/')

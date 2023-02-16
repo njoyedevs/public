@@ -24,22 +24,21 @@ class User:
     
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO friends (first_name , last_name , email) VALUES (%(first_name)s , %(last_name)s , %(email)s);"
-        
-        return connectToMySQL('Users').query_db( query, data )
+        query = "INSERT INTO users (first_name , last_name , email) VALUES (%(first_name)s , %(last_name)s , %(email)s);"
+        return connectToMySQL('Users').query_db(query, data)
     
     @classmethod
     def update(cls, data):
-        query  = "UPDATE users SET first_name  = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s};"
+        query  = "UPDATE users SET first_name  = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL('Users').query_db(query, data)
     
     @classmethod
     def get_one(cls,data):
-        print(data)
         query = "SELECT * FROM users WHERE id = %(id)s"
-        
-        info = {
-            "id": data['id'],
-        }
-        result = connectToMySQL('Users').query_db(query, info)
-        return cls(result[0])
+        results = connectToMySQL('Users').query_db(query, data)
+        return cls(results[0])
+    
+    @classmethod
+    def delete(cls, data):
+        query  = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL('Users').query_db(query, data)
