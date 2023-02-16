@@ -38,11 +38,15 @@
             display: flex;
             align-items: left;
             flex-direction: column;
-            margin: 0rem 47rem 0rem 6rem;
+            margin: 0rem 43rem 0rem 6rem;
         }
         .button {
-            margin: .5rem 0rem 0rem 0rem;
-            padding: 0rem 1.2rem 0rem 1.2rem;
+            margin: .4rem 0rem .4rem 0rem;
+            padding: 0rem .8rem 0rem .8rem;
+        }
+        .bottom_form {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -58,7 +62,7 @@
             <label for="last_name">Last Name:</label>
             <input type="text" name="last_name" value="{{ users.last_name }}">
             <label for="email" >Email:</label>
-            <input type="text" name="email" value="{{ users.email_name }}">
+            <input type="text" name="email" value="{{ users.email }}">
             <input type="hidden" value="{{users.id}}" name="id">
             <div class="bottom_form">
                 <input class="button" type="submit" value="Update">
