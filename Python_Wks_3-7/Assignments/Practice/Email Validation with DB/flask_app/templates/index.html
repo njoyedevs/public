@@ -29,6 +29,7 @@
     </style>
 </head>
 <body>
+    <h1>TEST</h1>
     <form class="box" action="/process" method="post">
         <div class="message">
             {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
@@ -39,8 +40,8 @@
                 {% endif %}
             {% endwith %}
         </div>
-        <input class="name_text" name="name" type="text"/>
-        <label class="labels" for="location">Dojo Location:</label>
+        <label class="labels" for="location">Email:</label>
+        <input class="email" name="email" type="text"/>
         <input class="button" type="submit" value="Button">
     </form>
 </body>
