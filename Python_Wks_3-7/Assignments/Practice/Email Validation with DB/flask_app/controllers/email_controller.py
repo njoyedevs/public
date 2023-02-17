@@ -21,4 +21,4 @@ def process():
 
 @app.route('/success')
 def results():
-    return render_template("success.html", emails=User.get_recent())
+    return render_template("success.html", emails=User.get_all(), email=User.get_recent())

@@ -24,6 +24,7 @@ class User:
         print("Saved")   
         return connectToMySQL(DATABASE).query_db(query,data)
     
+    @classmethod
     def get_all(cls):
         query = 'SELECT * FROM emails;'
         
@@ -35,6 +36,14 @@ class User:
             emails.append(email)
             
         return emails
+    
+    @classmethod
+    def get_recent(cls):
+        query = "SELECT * FROM emails ORDER BY id DESC LIMIT 1;"
+        
+        results = connectToMySQL(DATABASE).query_db(query)
+        
+        return cls(results[0])
     
     @staticmethod
     def validate_user(data):
