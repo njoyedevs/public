@@ -83,6 +83,10 @@
             border-radius: 5px;
             background-color: rgb(11, 83, 176)
         }
+        .message {
+            margin: 1rem 0rem 1rem 0rem;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +95,17 @@
             <h2>New Ninja</h2>
         </div>
         <div class="bottom">
+
+            <div class="message">
+                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </div>
+            
             <form action="/ninja/create" method="POST">
                 <div class="drop_main">
                     <label class="drop_label" for="ninja_id">Dojo:</label>
@@ -112,14 +127,3 @@
     </div>
 </body>
 </html>
-
-<!-- <form action="/create/dojo" method="post">
-    ...
-    <select name="dojo_id">
-        ##Need to create an option list for the user to select a dojo.
-        ##Note that we are passing the dojo id into the value
-        {% for dojo in dojos %}
-        <option value={{dojo.id}}>{{dojo.name}}</option>
-        {% endfor %}
-    </select>
-</form> -->

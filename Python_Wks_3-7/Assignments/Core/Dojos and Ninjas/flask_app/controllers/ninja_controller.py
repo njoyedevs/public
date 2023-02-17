@@ -18,7 +18,12 @@ def ninjaShow(id):
 
 @app.route('/ninja/create', methods=["POST"])
 def ninjaCreate():
-    print(request.form)
+    # print(request.form)
+    
+    if not Ninja.validate_ninja(request.form):
+        # redirect to the route where the burger form is rendered.
+        return redirect('/ninjas')
+    # else no errors:
     id = Ninja.save(request.form)
     
     return redirect(f"/dojos/{request.form['dojo_id']}")

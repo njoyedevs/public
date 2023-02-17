@@ -1,6 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
-# from flask_app.models.dojo import Dojo
+from flask_app import DATABASE
+
+from flask import flash
 
 class Ninja:
     def __init__(self,data):
@@ -15,7 +17,7 @@ class Ninja:
     @classmethod
     def get_all(cls):
         query = 'SELECT * FROM ninjas;'
-        results = connectToMySQL('Dojos_and_Ninjas').query_db(query)
+        results = connectToMySQL(DATABASE).query_db(query)
         
         ninjas = []
         
@@ -27,8 +29,8 @@ class Ninja:
     @classmethod
     def get_one(cls,data):
         query = "SELECT * FROM ninjas WHERE id = %(id)s;"
-        results = connectToMySQL('Dojos_and_Ninjas').query_db(query, data)
-        print(results)
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        # print(results)
         return cls(results[0])
     
     @classmethod
@@ -37,13 +39,33 @@ class Ninja:
                 age, created_at, updated_at, dojo_id) Values
                 (%(first_name)s, %(last_name)s, %(age)s, NOW(), NOW(), %(dojo_id)s);"""
                 
-        return connectToMySQL('Dojos_and_Ninjas').query_db(query,data)
+        return connectToMySQL(DATABASE).query_db(query,data)
+    
+    # Other Ninja methods up yonder.
+    # Static methods don't have self or cls passed into the parameters.
+    # We do need to take in a parameter to represent our burger
+    @staticmethod
+    def validate_ninja(ninjas):
+        
+        
+        
+        is_valid = True # we assume this is true
+        if len(ninjas['first_name']) < 2:
+            flash("First name must be at greater 2 characters.")
+            is_valid = False
+        if len(ninjas['last_name']) < 2:
+            flash("Last name must be at greater 2 characters.")
+            is_valid = False
+        if int(ninjas['age']) > 9999999999:
+            flash("Age must be less than 9999999999")
+            is_valid = False
+        return is_valid
     
     # @classmethod
     # def get_all_ninjas(cls):
     #     query = "SELECT * FROM ninjas LEFT JOIN dojos ON ninjas.user_id = dojos.id;"
         
-    #     results = connectToMySQL('Dojos_and_Ninjas').query_db(query)
+    #     results = connectToMySQL(DATABASE).query_db(query)
         
     #     dojo = []
         

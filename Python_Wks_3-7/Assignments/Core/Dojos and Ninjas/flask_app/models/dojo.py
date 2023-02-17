@@ -2,6 +2,10 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 from flask_app.models.ninja import Ninja
 
+from flask_app import DATABASE
+
+from flask import flash
+
 class Dojo:
     def __init__(self,data):
         self.id = data['id']
@@ -14,8 +18,8 @@ class Dojo:
     def get_all(cls):
         query = 'SELECT * FROM dojos;'
         
-        results = connectToMySQL('Dojos_and_Ninjas').query_db(query)
-        print(results)
+        results = connectToMySQL(DATABASE).query_db(query)
+        # print(results)
         dojos = []
         
         for dojo in results:
@@ -26,8 +30,8 @@ class Dojo:
     @classmethod
     def get_one(cls,data):
         query = "SELECT * FROM dojos WHERE id = %(id)s"
-        results = connectToMySQL('Dojos_and_Ninjas').query_db(query, data)
-        print(results)
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        # print(results)
         return cls(results[0])
     
     @classmethod
@@ -35,16 +39,16 @@ class Dojo:
         query = """INSERT INTO dojos (name, created_at, updated_at)
                 Values (%(name)s, NOW(), NOW())"""
                 
-        return connectToMySQL('Dojos_and_Ninjas').query_db(query,data)
+        return connectToMySQL(DATABASE).query_db(query,data)
     
     @classmethod
     def get_dojo_with_ninjas(cls,data):
         
         query = "SELECT * FROM dojos LEFT JOIN ninjas on ninjas.dojo_id=dojos.id WHERE dojos.id = %(id)s;"
         
-        results = connectToMySQL('Dojos_and_Ninjas').query_db(query,data)
+        results = connectToMySQL(DATABASE).query_db(query,data)
         
-        print(results)
+        # print(results)
         
         dojo = cls(results[0])
         

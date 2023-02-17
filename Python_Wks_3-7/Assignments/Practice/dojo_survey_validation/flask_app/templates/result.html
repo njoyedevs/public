@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey Results</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-shadow: none;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .box {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+            padding: 1rem 1rem 1rem 1rem;
+            border: .1rem solid black;
+            background-color: rgb(60, 54, 54);
+        }
+        .heading {
+            padding: .3rem 0rem .3rem 0rem;
+            color: rgb(213, 186, 8);
+        }
+        .text {
+            padding: .3rem 0rem .3rem 0rem;
+            color: white;
+        }
+        .button {
+            text-align: center;
+            text-decoration: none;
+            padding: .3rem 0rem 0rem 0rem;
+            margin: .5rem 0rem 0rem 10rem;
+            width: 4rem;
+            height: 1.5rem;
+            background:#38c9e3;
+            color: #f7faf9;
+            border: 3px solid black;
+            box-shadow:2px 2px 2px #01252b;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2 class="heading">{{ data["name"] }}</h2>
+        <p class="text">{{ data["location"] }}</p>
+        <p class="text">{{ data["language"] }}</p>
+        <p class="text">{{ data["comment"] }}</p>
+        <a href="/reset" class="button">Button</a>
+    </div>
+</body>
+</html>
