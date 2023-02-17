@@ -25,16 +25,16 @@ class User:
         return connectToMySQL(DATABASE).query_db(query,data)
     
     def get_all(cls):
-        query = 'SELECT email, created_at FROM emails;'
+        query = 'SELECT * FROM emails;'
         
         results = connectToMySQL(DATABASE).query_db(query)
         # print(results)
-        dojos = []
+        emails = []
         
-        for dojo in results:
-            dojos.append(dojo)
+        for email in results:
+            emails.append(email)
             
-        return dojos
+        return emails
     
     @staticmethod
     def validate_user(data):
