@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `logins`.`logins` (
   `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(60) NULL,
+  `confirm` VARCHAR(60) NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW(),
   PRIMARY KEY (`id`))

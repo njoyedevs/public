@@ -21,18 +21,18 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
-    # @classmethod
-    # def get_all(cls):
-    #     query = "SELECT * FROM logins;"
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM logins;"
         
-    #     results = connectToMySQL(DATABASE).query_db(query)
-    #     print(results)
-    #     logins = []
+        results = connectToMySQL(DATABASE).query_db(query)
+        # print(results)
+        logins = []
         
-    #     for login in results:
-    #         logins.append( cls(login) )
+        for login in results:
+            logins.append( cls(login) )
             
-    #     return logins
+        return logins
     
     @classmethod
     def save(cls, data):
@@ -51,6 +51,14 @@ class User:
     #     results = connectToMySQL(DATABASE).query_db(query, data)
     #     return cls(results[0])
     
+    @classmethod
+    def verify_one(cls,data):
+        
+        query = "SELECT * FROM logins WHERE email = %(email)s"
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        
+        return results
+    
     # @classmethod
     # def delete(cls, data):
     #     query  = "DELETE FROM users WHERE id = %(id)s;"
@@ -58,7 +66,8 @@ class User:
     
     @classmethod
     def email_used(cls, data):
-        query = "SELECT email FROM emails WHERE email = %(email)s"
+        
+        query = "SELECT email FROM logins WHERE email = %(email)s"
         
         results = connectToMySQL(DATABASE).query_db(query, data)
         
@@ -70,19 +79,44 @@ class User:
         return is_valid
     
     @staticmethod
-    def validate_email(data):
-    
+    def validate_name(data):
+        
+        names = ['first_name', 'last_name']
+        
         is_valid = True
-        if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid email address!", 'message_1')
-            is_valid = False
-            
+        
+        for name in names:
+        
+            if(re.match("^[a-zA-Z]*$", data[name]) == None):
+                flash("First/Last name may only be alpha characters!", 'naming_error')
+                is_valid = False
+                
+            if len(data[name]) < 2:
+                flash("First/Last name must be at least 2 characters!", 'naming_error')
+                is_valid = False
+                
+        return is_valid
+    
+    @staticmethod
+    def check_email(data):
+
+        is_valid = True
         data_dict = {
             'email': f"{data['email']}"
         }
 
         if User.email_used(data_dict):
-            flash("Emailed Already Used!", 'message_1')
+            flash("Emailed Already Used!", 'email_error')
+            is_valid = False
+            
+        return is_valid
+    
+    @staticmethod
+    def is_email(data):
+        
+        is_valid = True
+        if not EMAIL_REGEX.match(data['email']):
+            flash("Invalid email address!", 'email_error')
             is_valid = False
             
         return is_valid
@@ -92,14 +126,14 @@ class User:
         
         is_valid = True
         if data['password'] != data['confirm']:
-            flash("Passwords do not match!", 'message_1')
+            flash(u"Passwords do not match!", 'password_error')
             is_valid = False
             
         res = re.search(PASSWORD_REGEX, data['password'])
             
         if not res:
             flash("""Passwords must be at least 8 characters and
-                contain: 1(A-Z),1(a-z),1(0-9),1(!@#$%^&*)""", 'message_1')
+                contain: 1(A-Z),1(a-z),1(0-9),1(!@#$%^&*)""", 'password_error')
             is_valid = False
         
         return is_valid

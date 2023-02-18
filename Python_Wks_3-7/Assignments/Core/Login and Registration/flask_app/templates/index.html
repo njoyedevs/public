@@ -50,6 +50,11 @@
         .message {
             margin: 0rem 0rem 0rem 0rem;
             color: red;
+            background-color: rgb(234, 142, 157);
+        }
+        #list {
+            list-style-type: none;
+            margin: 1rem 0rem 1rem 1rem;
         }
         .labels {
             padding: .3rem 0rem .3rem 0rem;
@@ -88,16 +93,18 @@
         <form class="box_1" action="/registration" method="post">
             <h2 class="heading_1">Registration</h2>
             <div class="message">
-                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
-                    {% if messages %}                            <!-- check if there are any messages -->
-                        {% for message in messages %}            <!-- loop through the messages -->
-                            <p>{{message_1}}</p>                   <!-- display each message in a paragraph tag -->
-                        {% endfor %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flashes">
+                            {% for category, message in messages %}
+                                <li id='list' class='{{ category }}'>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                 {% endwith %}
             </div>
-            <label class="labels" for="full_name">First Name:</label>
-            <input class="text_boxes" name="full_name" type="text"/>
+            <label class="labels" for="first_name">First Name:</label>
+            <input class="text_boxes" name="first_name" type="text"/>
             <label class="labels" for="last_name">Last Name:</label>
             <input class="text_boxes" name="last_name" type="text"/>
             <label class="labels" for="email">Email:</label>
@@ -113,18 +120,20 @@
         <form class="box_2" action="/login" method="post">
             <h2 class="heading_2">Login</h2>
             <div class="message">
-                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
-                    {% if messages %}                            <!-- check if there are any messages -->
-                        {% for message in messages %}            <!-- loop through the messages -->
-                            <p>{{message_2}}</p>                   <!-- display each message in a paragraph tag -->
-                        {% endfor %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flashes">
+                            {% for category, message in messages %}
+                                <li id='list' class='{{ category }}'>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                 {% endwith %}
             </div>
-            <label class="labels" for="email_login">Email:</label>
-            <input class="text_boxes" name="email_login" type="text"/>
-            <label class="labels" for="password_login">Password:</label>
-            <input class="text_boxes" name="password_login" type="text"/>
+            <label class="labels" for="email">Email:</label>
+            <input class="text_boxes" name="email" type="text"/>
+            <label class="labels" for="password">Password:</label>
+            <input class="text_boxes" name="password" type="text"/>
             <input class="button_2" type="submit" value="Login">
         </form>
     </div>

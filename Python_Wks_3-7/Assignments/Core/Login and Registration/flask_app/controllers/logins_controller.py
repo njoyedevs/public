@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, Bcrypt
+from flask import render_template, request, redirect, session, flash
 
 from flask_app.models.logins import User
 
@@ -18,7 +18,7 @@ def index():
 @app.route('/dashboard')
 def dashboard():
     # return redirect('/users')
-    return render_template('dashboard.html')   
+    return render_template('dashboard.html', data=User.get_all())   
 
 # @app.route('/users')
 # def users():
@@ -31,20 +31,29 @@ def dashboard():
 
 @app.route('/registration', methods=["POST"])
 def create():
-    print(request.form)
     
-    if not User.validate_email(request.form):
+    if not User.validate_name(request.form):
+        return redirect('/')
+
+    if not User.is_email(request.form):
+        return redirect('/')
+    
+    if not User.check_email(request.form):
         return redirect('/')
     
     if not User.compare_password(request.form):
         return redirect('/')
     
     pw_hash = BCRYPT.generate_password_hash(request.form['password'])
-    print(pw_hash)
     
+    cnf_hash = BCRYPT.generate_password_hash(request.form['confirm'])
+
     data = {
-        'username': request.form['username'],
-        'password': pw_hash
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email'],
+        "password":pw_hash,
+        "confirm": cnf_hash,
     }
     
     user_id = User.save(data)
@@ -53,16 +62,28 @@ def create():
     
     return redirect('/dashboard')
 
-# @app.route('/login', methods=["POST"])
-# def login():
-#     print(request.form)
+@app.route('/login', methods=["POST"])
+def login():
+    print(request.form)
     
-#     if not User.login(request.form):
+    # if not User.check_email(request.form):
+    #     return redirect('/')
+    
+    user_data = User.verify_one(request.form)
+    print(user_data)
+    
+    if not user_data:
+        flash('User does not exist', 'login_error')
+        return redirect('/')
 
-#         return redirect('/')
+    if not BCRYPT.check_password_hash(user_data[0]['password'], request.form['password']):
+        # if we get False after checking the password
+        flash("Invalid Password", 'password_error')
+        return redirect('/')
     
-#     session['user_id'] = 'id'
-#     return redirect('/dashboard')
+    session['user_id'] = user_data[0]['id']
+    
+    return redirect('/dashboard')
 
 # @app.route('/users/<int:id>/edit')
 # def edit(id):
