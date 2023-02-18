@@ -43,15 +43,44 @@ class User:
         
         results = connectToMySQL(DATABASE).query_db(query)
         
-        return cls(results[0])
-    
+        if len(results) == 0:
+            return False
+        else:
+            return cls(results[0])
+        
+    @classmethod
+    def email_used(cls, data):
+        query = "SELECT email FROM emails WHERE email = %(email)s"
+        
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        
+        is_valid = False
+        
+        if len(results) > 0:
+            is_valid = True
+            
+        return is_valid
+        
     @staticmethod
     def validate_user(data):
         
-        is_valid = True # we assume this is true
+        is_valid = True
         if not EMAIL_REGEX.match(data['email']):
             flash("Invalid email address!")
             is_valid = False
             
-        print("Validated")
+        data_dict = {
+            'email': f"{data['email']}"
+        }
+
+        if User.email_used(data_dict):
+            flash("Emailed Already Used!")
+            is_valid = False
+            
         return is_valid
+    
+    @classmethod
+    def delete(cls, data):
+        print(data)
+        query  = "DELETE FROM emails WHERE id = %(id)s;"
+        return connectToMySQL(DATABASE).query_db(query, data)

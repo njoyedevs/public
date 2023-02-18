@@ -30,6 +30,9 @@
         .emails {
             margin: 1rem 0rem 0rem 2rem;
         }
+        a {
+            margin: 0rem 0rem 0rem 3rem;
+        }
         p {
             margin: 1rem 0rem 0rem 3rem;
         }
@@ -45,15 +48,18 @@
     </style>
 </head>
 <body>
-    <form class="box" action="/process" method="post">
+    <form action="/delete" method="POST">
         <div class="message">
             The email address you entered - {{email.email}}
             - is a Valid email address! Thank you!
         </div>
         <h4 class="emails">Email Addresses Entered:</h4>
-        {% for email in emails %}
-            <p>{{email.email}}</p>
-        {% endfor %}
+        <div class="emails_deletes">
+            {% for email in emails %}
+                <p>{{email.email}} <input class="button" type="submit" value="Delete"></p>
+                <input type="hidden" value="{{email.id}}" name="id">
+            {% endfor %}
+        </div>
     </form>
 </body>
 </html>
