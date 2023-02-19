@@ -13,22 +13,15 @@ class Message:
     
     @classmethod
     def save_message(cls, data):
-        query = """INSERT INTO messages (recipient_id , message , read, created_at, updated_at)
-                VALUES (%(recipient_id)s , %(message)s , %(read)s, NOW(), NOW());"""
-                
+        query = """INSERT INTO messages (user_id, recipient_id , message , created_at, updated_at)
+                VALUES (%(user_id)s , %(recipient_id)s , %(message)s , NOW(), NOW());"""
+        
         return connectToMySQL(DATABASE).query_db(query, data)
-    
-    # @classmethod
-    # def update(cls, data):
-    #     query  = "UPDATE users SET first_name  = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
-    #     return connectToMySQL(DATABASE).query_db(query, data)
     
     @classmethod
     def get_one_message(cls,data):
-        print(data)
         query = "SELECT * FROM messages WHERE id = %(id)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
-        print(results)
         return cls(results[0])
     
     @classmethod
@@ -45,22 +38,28 @@ class Message:
         return messages
     
     @classmethod
-    def get_recieved_messages(cls,data):
-        query = "SELECT * FROM messages WHERE recipient_id = %(id)s"
-        results = connectToMySQL(DATABASE).query_db(query, data)
-
-        if results != False:
-            messages = []
-        
-            for message in results:
-                messages.append( cls(message) )
-
-            return messages
-
-    @classmethod
     def get_sent_messages(cls,data):
-        query = "SELECT * FROM messages WHERE login_id = %(id)s"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+
+        query = "SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE user_id = '1'" #### Can't get this to work add %(id)s when fixed
+        results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
+        print(results)
+
+        # if results != False:
+        #     messages = []
+        
+        #     for message in results:
+        #         messages.append( cls(message) )
+
+        #     return messages
+        
+        
+    
+    @classmethod
+    def get_recieved_messages(cls,data):
+        
+        query = "SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE recipient_id = '1'" #### Can't get this to work add %(id)s when fixed
+        results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
+        print(results)
 
         if results != False:
             messages = []
@@ -69,25 +68,7 @@ class Message:
                 messages.append( cls(message) )
 
             return messages
-    
-    # @classmethod
-    # def get_user_comt_mesg(cls,data):
-    #     query = """SELECT * FROM logins.logins 
-    #             LEFT JOIN logins.comments ON
-    #             logins.comments.login_id = logins.logins.id
-    #             LEFT JOIN logins.messages ON
-    #             logins.messages.login_id = logins.logins.id
-    #             WHERE logins.logins.id = %(id)s;"""
-        
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
 
-    #     data_array = []
-        
-    #     for item in results:
-    #         data_array.append( item )
-
-    #     return data_array
-    
     @classmethod
     def delete_message(cls, data):
         query  = "DELETE FROM messages WHERE id = %(id)s;"

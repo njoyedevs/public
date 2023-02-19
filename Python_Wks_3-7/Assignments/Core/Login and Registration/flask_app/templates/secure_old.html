@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ one_user.first_name }}'s Dashboard</title>
+    <title>{{ user.first_name }} Dashboard</title>
     <style>
         * {
             padding: 0;
@@ -19,14 +19,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: .1rem solid rgb(86, 83, 83);
-            padding: 0rem 0rem .3rem 0rem;
+            border-bottom: .21rem solid rgb(86, 83, 83);
         }
         .heading > h1 {
             margin: 1rem 0rem 0rem 0rem;
         }
         .heading > h2 {
-            margin: 1rem 0rem 0rem 30rem;
+            margin: 1rem 0rem 0rem 25rem;
 
         }
         .heading > a {
@@ -46,94 +45,42 @@
         }
         .bottom_box {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
         }
         .left_box {
             display: flex;
+            align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin: 1rem 5rem 0rem 0rem;
-            padding: 1rem 1rem 1rem 1rem;
-            background-color: rgb(86, 83, 83);
-            border-radius: 5px;
-            width: 20rem;
-            
+        }
+        .right_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         .topic {
-            /* border-bottom: .3rem solid rgb(236, 200, 59); */
-            text-align: center;
-            border-bottom: .11rem solid rgb(234, 206, 45);
-            color: white;
-            margin: 0rem 0rem 1rem 0rem;
+            border-bottom: .21rem solid rgb(86, 83, 83);
         }
-        .header_line {
-            margin: 0rem 0rem 1rem 0rem;
-        }
-        .each_form_1 {
+        .left_message {
             display: flex;
-            align-items: left;
+            align-items: center;
             justify-content: center;
             flex-direction: column;
-            background-color: rgb(52, 123, 229);
-            color: white;
-            padding: 1rem;
-        }
-        .message_line {
-            border-bottom: .2rem solid rgb(0, 67, 168);
-            margin: 1rem 0rem 0rem 0rem ;
         }
         .del_button {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background-color: red;
-            color: white;
-            margin: .2rem 15rem 0rem 0rem;
-            width: 4rem;
-            height: 2rem;
-            border-radius: 5px;
-            border: none;
-
-        }
-        .right_box {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            margin: 1rem 0rem 0rem 3rem;
-            padding: 1rem 1rem 1rem 1rem;
-            background-color: rgb(86, 83, 83);
-            border-radius: 5px;
-        }
-        .each_form_2 {
-            display: flex;
-            align-items: left;
-            justify-content: center;
-            flex-direction: column;
-            margin: 0rem 0rem 1rem 0rem;
-        }
-        .labels {
-            color: white;
-        }
-        .text_boxes {
-            width: 20rem;
-            height: 5rem;
-        }
-        .message_button {
-            margin: .2rem 15rem 0rem 0rem;
-            width: 4rem;
-            height: 2rem;
-            background-color: rgb(234, 206, 45);
-            border-radius: 5px;
-            border: none;
         }
     </style>
 </head>
 <body>
     <div class="heading">
         <h1>Coding Dojo Wall</h1>
-        <h2>Welcome {{ one_user.first_name }}!</h2>
+        <h2>Welcome {{ user.first_name }}!</h2>
         <a href="/clear_session" class="logout_button">Logout</a>
     </div>
     <div class="bottom_box">
@@ -142,7 +89,7 @@
             {% for message in messages.inbox_messages %}
             <form class="each_form_1" action="/delete" method="post">
                 <div class="left_message">
-                    <h3 class="'header_line">{{ message.recipient_name }} said ({{ message.created_at }} ago)</h3>
+                    <h3 class="'header_line">{{ message.recipient_id }} said ({{ message.created_at }} ago)</h3>
                     <p class="message_line">{{ message.message }}</p>
                 </div>
                 <input class="del_button" type="submit" value="Delete">
@@ -152,14 +99,13 @@
         </div>
         <div class="right_box">
             <h3 class="topic">Send Message(s)</h3>
-            <h3 class="header_line">You have sent {{ messages.outbox_count }} messages so far</h3>
-            {% for user in all_users %}
+            <h3 class="count_messages">You have sent {{ messages.outbox_count }} messages so far</h3>
+            {% for login in logins %}
             <form class="each_form_2" action="/send" method="post">
-                <label class="labels" for="message_box">Message {{ user.first_name }}:</label>
+                <label class="labels" for="message_box">Message {{ login.first_name }}:</label>
                 <textarea class="text_boxes" name="message_box"></textarea>
-                <input class="message_button" type="submit" value="Message">
-                <input type="hidden" value="{{ user.id }}" name="recipient_id">
-                <input type="hidden" value="{{ one_user.id }}" name="user_id">
+                <input class="del_button" type="submit" value="Message">
+                <input type="hidden" value="{{ login.id }}" name="recipient_id">
             </form>
             {% endfor %}
         </div>

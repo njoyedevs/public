@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
-from flask_app import app, DATABASE, BCRYPT
+from flask_app import DATABASE, BCRYPT
 
 from flask import flash
 
@@ -25,27 +25,22 @@ class User:
     
     @classmethod
     def save_user(cls, data):
-        query = """INSERT INTO logins (first_name , last_name , email, optimism, password, confirm, created_at, updated_at)
+        query = """INSERT INTO users (first_name , last_name , email, optimism, password, confirm, created_at, updated_at)
                 VALUES (%(first_name)s , %(last_name)s , %(email)s, %(optimism)s , %(password)s , %(confirm)s, NOW(), NOW());"""
                 
         return connectToMySQL(DATABASE).query_db(query, data)
-    
-    # @classmethod
-    # def update(cls, data):
-    #     query  = "UPDATE users SET first_name  = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
-    #     return connectToMySQL(DATABASE).query_db(query, data)
-    
+
     @classmethod
     def get_one_user(cls,data):
-        print(data)
-        query = "SELECT * FROM logins WHERE id = %(id)s"
-        results = connectToMySQL(DATABASE).query_db(query, data)
-        print(results)
+        query = "SELECT * FROM users WHERE id = '1'" #### Can't get this to work add %(id)s when fixed
+        
+        results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
+        
         return cls(results[0])
     
     @classmethod
     def get_all_users(cls):
-        query = "SELECT * FROM logins;"
+        query = "SELECT * FROM users;"
         
         results = connectToMySQL(DATABASE).query_db(query)
         # print(results)
@@ -58,12 +53,12 @@ class User:
     
     @classmethod
     def get_user_comt_mesg(cls,data):
-        query = """SELECT * FROM logins.logins 
-                LEFT JOIN logins.comments ON
-                logins.comments.login_id = logins.logins.id
-                LEFT JOIN logins.messages ON
-                logins.messages.login_id = logins.logins.id
-                WHERE logins.logins.id = %(id)s;"""
+        query = """SELECT * FROM users 
+                LEFT JOIN comments ON
+                comments.login_id = logins.id
+                LEFT JOIN messages ON
+                messages.login_id = logins.id
+                WHERE logins.id = %(id)s;"""
         
         results = connectToMySQL(DATABASE).query_db(query, data)
 
@@ -77,7 +72,7 @@ class User:
     @classmethod
     def verify_one(cls,data):
         
-        query = "SELECT * FROM logins WHERE email = %(email)s"
+        query = "SELECT * FROM users WHERE email = %(email)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
         
         return results
@@ -85,7 +80,7 @@ class User:
     @classmethod
     def email_used(cls, data):
         
-        query = "SELECT email FROM logins WHERE email = %(email)s"
+        query = "SELECT email FROM users WHERE email = %(email)s"
         
         results = connectToMySQL(DATABASE).query_db(query, data)
         

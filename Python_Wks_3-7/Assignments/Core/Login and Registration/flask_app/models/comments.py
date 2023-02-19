@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
-from flask_app import app, DATABASE
+from flask_app import DATABASE
 
 class Comment:
     def __init__(self,data):
@@ -16,14 +16,8 @@ class Comment:
                 
         return connectToMySQL(DATABASE).query_db(query, data)
     
-    # @classmethod
-    # def update(cls, data):
-    #     query  = "UPDATE users SET first_name  = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
-    #     return connectToMySQL(DATABASE).query_db(query, data)
-    
     @classmethod
     def get_one_comment(cls,data):
-        print(data)
         query = "SELECT * FROM comments WHERE id = %(id)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
         return cls(results[0])
@@ -53,24 +47,6 @@ class Comment:
                 messages.append( cls(message) )
 
             return messages
-    
-    # @classmethod
-    # def get_user_comt_mesg(cls,data):
-    #     query = """SELECT * FROM logins.logins 
-    #             LEFT JOIN logins.comments ON
-    #             logins.comments.login_id = logins.logins.id
-    #             LEFT JOIN logins.messages ON
-    #             logins.messages.login_id = logins.logins.id
-    #             WHERE logins.logins.id = %(id)s;"""
-        
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-
-    #     data_array = []
-        
-    #     for item in results:
-    #         data_array.append( item )
-
-    #     return data_array
     
     @classmethod
     def delete_comment(cls, data):
