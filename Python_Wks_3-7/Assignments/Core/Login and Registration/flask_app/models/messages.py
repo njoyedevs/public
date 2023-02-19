@@ -2,6 +2,12 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 from flask_app import DATABASE
 
+from flask_app.models import users
+
+import re
+
+from flask import flash
+
 class Message:
     def __init__(self,data):
         self.id = data['id']
@@ -15,6 +21,7 @@ class Message:
     def save_message(cls, data):
         query = """INSERT INTO messages (user_id, recipient_id , message , created_at, updated_at)
                 VALUES (%(user_id)s , %(recipient_id)s , %(message)s , NOW(), NOW());"""
+        print(query)
         
         return connectToMySQL(DATABASE).query_db(query, data)
     
@@ -40,26 +47,25 @@ class Message:
     @classmethod
     def get_sent_messages(cls,data):
 
-        query = "SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE user_id = '1'" #### Can't get this to work add %(id)s when fixed
+        query = f"SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE user_id = {data}" #### Can't get this to work add %(id)s when fixed
+
         results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
-        print(results)
+        # print(results)
 
-        # if results != False:
-        #     messages = []
+        if results != False:
+            messages = []
         
-        #     for message in results:
-        #         messages.append( cls(message) )
+            for message in results:
+                messages.append( cls(message) )
 
-        #     return messages
+            return messages
         
-        
-    
     @classmethod
     def get_recieved_messages(cls,data):
         
-        query = "SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE recipient_id = '1'" #### Can't get this to work add %(id)s when fixed
+        query = f"SELECT * FROM messages LEFT JOIN users ON users.id = messages.user_id WHERE recipient_id = {data}" #### Can't get this to work add %(id)s when fixed
         results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
-        print(results)
+        # print(results)
 
         if results != False:
             messages = []
@@ -71,6 +77,21 @@ class Message:
 
     @classmethod
     def delete_message(cls, data):
+        
+        # print(data)
+        
         query  = "DELETE FROM messages WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
+    
+    @staticmethod
+    def check_text(data):  # COUND NOT GET THIS TO WORK
+        
+        print('TEST')
+        
+        is_valid = True
+        # if not TEXT_REGEX.match(data['message_box']):
+        #     flash("Messages must have 5 characters!", 'text_error')
+        #     is_valid = False
+            
+        return is_valid
     

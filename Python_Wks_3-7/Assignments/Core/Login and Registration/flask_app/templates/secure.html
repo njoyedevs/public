@@ -23,10 +23,10 @@
             padding: 0rem 0rem .3rem 0rem;
         }
         .heading > h1 {
-            margin: 1rem 0rem 0rem 0rem;
+            margin: 1rem 0rem 0rem 2rem;
         }
         .heading > h2 {
-            margin: 1rem 0rem 0rem 30rem;
+            margin: 1rem 0rem 0rem 35rem;
 
         }
         .heading > a {
@@ -128,31 +128,50 @@
             border-radius: 5px;
             border: none;
         }
+        .error_message {
+            margin: 0rem 0rem 1rem 0rem;
+        }
+        #list {
+            list-style-type: none;
+            color: red;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
     <div class="heading">
         <h1>Coding Dojo Wall</h1>
-        <h2>Welcome {{ one_user.first_name }}!</h2>
+        <h2>Welcome, {{ one_user.first_name }}!</h2>
         <a href="/clear_session" class="logout_button">Logout</a>
     </div>
     <div class="bottom_box">
         <div class="left_box">
             <h3 class="topic">{{ messages.inbox_count }} Message(s) for you</h3>
             {% for message in messages.inbox_messages %}
-            <form class="each_form_1" action="/delete" method="post">
+            <form class="each_form_1" action="/delete/message" method="post">
                 <div class="left_message">
-                    <h3 class="'header_line">{{ message.recipient_name }} said ({{ message.created_at }} ago)</h3>
+                    <h3 class="'header_line">User {{ message.recipient_id }} said {{ message.created_at }} seconds ago</h3>
                     <p class="message_line">{{ message.message }}</p>
                 </div>
                 <input class="del_button" type="submit" value="Delete">
-                <input type="hidden" value="{{message.id}}" name="id">
+                <input type="hidden" value="{{message.id}}" name="recipient_id">
             </form>
             {% endfor %}
         </div>
         <div class="right_box">
             <h3 class="topic">Send Message(s)</h3>
             <h3 class="header_line">You have sent {{ messages.outbox_count }} messages so far</h3>
+            <div class="error_message">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flashes">
+                            {% for category, message in messages %}
+                                <li id='list' class='{{ category }}'>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
             {% for user in all_users %}
             <form class="each_form_2" action="/send" method="post">
                 <label class="labels" for="message_box">Message {{ user.first_name }}:</label>

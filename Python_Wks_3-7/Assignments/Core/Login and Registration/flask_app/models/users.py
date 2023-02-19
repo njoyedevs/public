@@ -7,7 +7,6 @@ from flask import flash
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-# PASSWORD_REGEX = re.compile(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,18}$")
 PASSWORD_REGEX = re.compile(r"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")
                             
 class User:
@@ -32,7 +31,7 @@ class User:
 
     @classmethod
     def get_one_user(cls,data):
-        query = "SELECT * FROM users WHERE id = '1'" #### Can't get this to work add %(id)s when fixed
+        query = f"SELECT * FROM users WHERE id = {data}" #### Can't get this to work add %(id)s when fixed
         
         results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
         
@@ -90,6 +89,11 @@ class User:
             is_valid = True
             
         return is_valid
+    
+    @classmethod
+    def delete_user(cls, data):
+        query  = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL(DATABASE).query_db(query, data)
     
     @staticmethod
     def validate_name(data):
@@ -151,7 +155,3 @@ class User:
         
         return is_valid
     
-    @classmethod
-    def delete_user(cls, data):
-        query  = "DELETE FROM users WHERE id = %(id)s;"
-        return connectToMySQL(DATABASE).query_db(query, data)

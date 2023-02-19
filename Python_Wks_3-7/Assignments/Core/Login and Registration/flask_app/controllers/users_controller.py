@@ -49,6 +49,9 @@ def send_message():
         "message": request.form['message_box'],
     }
     
+    if not messages.Message.check_text(request.form):
+        return redirect('/dashboard')
+    
     messages.Message.save_message(data)
     
     return redirect('/dashboard')
@@ -110,7 +113,7 @@ def clear_session():
     session.clear()
     return redirect('/')
 
-@app.route('/delete/user')
+@app.route('/delete/user', methods=["POST"])
 def delete_user():
     
     data = {
@@ -121,7 +124,7 @@ def delete_user():
     session.clear()
     return redirect('/')
 
-@app.route('/delete/message')
+@app.route('/delete/message', methods=["POST"])
 def delete_message():
     
     data = {
@@ -131,7 +134,7 @@ def delete_message():
     messages.Message.delete_message(data)
     return redirect('/dashboard')
 
-@app.route('/delete/comment')
+@app.route('/delete/comment', methods=["POST"])
 def delete_comment():
     
     data = {
