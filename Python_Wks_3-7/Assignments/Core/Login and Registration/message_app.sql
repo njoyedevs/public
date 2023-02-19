@@ -54,26 +54,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `message_app`.`comments`
+-- Table `message_app`.`friends`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `message_app`.`comments` (
+CREATE TABLE IF NOT EXISTS `message_app`.`friends` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `comment` VARCHAR(250) NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW(),
   `user_id` INT NOT NULL,
-  `message_id` INT NOT NULL,
+  `friend_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comments_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_comments_messages1_idx` (`message_id` ASC) VISIBLE,
-  CONSTRAINT `fk_comments_users1`
+  INDEX `fk_friendships_users1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_friendships_users2_idx` (`friend_id` ASC) VISIBLE,
+  CONSTRAINT `fk_friendships_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `message_app`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_comments_messages1`
-    FOREIGN KEY (`message_id`)
-    REFERENCES `message_app`.`messages` (`id`)
+  CONSTRAINT `fk_friendships_users2`
+    FOREIGN KEY (`friend_id`)
+    REFERENCES `message_app`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

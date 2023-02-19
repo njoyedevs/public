@@ -31,6 +31,19 @@
         .heading > a {
             margin: 1rem 0rem 0rem 0rem;
         }
+        .friends_button {
+            margin: 0rem 0rem 0rem 0rem;
+            padding: 0rem 1rem 0rem 1rem;
+            width: 4rem;
+            height: 2rem;
+            background:red;
+            color: #f7faf9;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
         .logout_button {
             margin: 0rem 0rem 0rem 0rem;
             width: 4rem;
@@ -57,7 +70,6 @@
             background-color: rgb(86, 83, 83);
             border-radius: 5px;
             width: 20rem;
-            
         }
         .topic {
             text-align: center;
@@ -77,6 +89,7 @@
             background-color: rgb(52, 123, 229);
             color: white;
             padding: 1rem;
+            margin: 0rem 0rem 1rem 0rem;
         }
         .message_line {
             border-bottom: .2rem solid rgb(0, 67, 168);
@@ -141,6 +154,7 @@
     <div class="heading">
         <h1>Coding Dojo Wall</h1>
         <h2>Welcome, {{ one_user.first_name }}!</h2>
+        <a href="/friendships" class="friends_button">Friendships</a>
         <a href="/clear_session" class="logout_button">Logout</a>
     </div>
     <div class="bottom_box">
@@ -149,7 +163,7 @@
             {% for message in rec_messages %}
             <form class="each_form_1" action="/delete/message" method="post">
                 <div class="left_message">
-                    <h3 class="'header_line">{{ message[1] }} sent {{ message[0].time_span(message[0].created_at) }} ago</h3>
+                    <h3 class="'header_line">{{ message[1] }} sent {{ message[0].time_span(message[0].created_at) }}</h3>
                     <p class="message_line">{{ message[0].message }}</p>
                 </div>
                 <input class="del_button" type="submit" value="Delete">

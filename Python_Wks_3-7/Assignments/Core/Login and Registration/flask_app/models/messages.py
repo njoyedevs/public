@@ -51,6 +51,8 @@ class Message:
     @classmethod
     def get_recieved_messages(cls,data):
         
+        # print(data)
+        
         # # Fetch the user to associate with all the message objects
         #sender = users.User.get_one_user(data)
 
@@ -79,7 +81,7 @@ class Message:
             # }
             # recipient = users.User(recipient_data)
             # print(message['user_id'])
-            sender = users.User.get_one_user(data)
+            sender = users.User.get_one_user(message['user_id'])
             print(sender.first_name)
 
             # Make the message object

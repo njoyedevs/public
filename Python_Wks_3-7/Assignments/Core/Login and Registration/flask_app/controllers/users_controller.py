@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash
 
-from flask_app.models import users, messages, users
+from flask_app.models import users, messages, friends
 
 from flask_app import app, BCRYPT
 
