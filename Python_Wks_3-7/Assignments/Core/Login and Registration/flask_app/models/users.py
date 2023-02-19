@@ -34,7 +34,7 @@ class User:
         query = f"SELECT * FROM users WHERE id = {data}" #### Can't get this to work add %(id)s when fixed
         
         results = connectToMySQL(DATABASE).query_db(query) ### Add , data when fixed
-        
+        # print(results)
         return cls(results[0])
     
     @classmethod
