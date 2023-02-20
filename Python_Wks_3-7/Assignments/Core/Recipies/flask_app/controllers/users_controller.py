@@ -39,7 +39,6 @@ def create():
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
-        'optimism': request.form['optimism'],
         "password":pw_hash,
         "confirm": cnf_hash,
     }
@@ -48,7 +47,7 @@ def create():
     
     session['user_id'] = user_id
     
-    return redirect('/dashboard')
+    return redirect('/recipies')
 
 @app.route('/login', methods=["POST"])
 def login():
@@ -66,7 +65,7 @@ def login():
     
     session['user_id'] = user_data[0]['id']
     
-    return redirect('/dashboard')
+    return redirect('/recipies')
 
 @app.route('/clear_session')
 def clear_session():

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/7358212b7e.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-shadow: none;
+        }
+        body {
+            display: flex;
+            align-items: top;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .box_1 {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0rem 5rem 0rem 0rem;
+            padding: 1rem 1rem 1rem 1rem;
+            background-color: rgb(86, 83, 83);
+            border-radius: 5px;
+        }
+        .box_2 {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0rem 0rem 0rem 3rem;
+            padding: 1rem 1rem 1rem 1rem;
+            background-color: rgb(86, 83, 83);
+            border-radius: 5px;
+        }
+
+        .heading_1 {
+            padding: .3rem 0rem .3rem 0rem;
+            color:  rgb(52, 123, 229);
+        }
+        .heading_2 {
+            padding: .3rem 0rem .3rem 0rem;
+            color: rgb(13, 167, 8);
+        }
+        .message {
+            margin: 0rem 0rem 0rem 0rem;
+            color: red;
+            background-color: rgb(234, 142, 157);
+        }
+        #list {
+            list-style-type: none;
+            margin: 1rem 0rem 1rem 1rem;
+        }
+        .labels {
+            padding: .3rem 0rem .3rem 0rem;
+            color: white;
+            font-size: .75rem;
+        }
+        .text_boxes {
+            height: 1.5rem;
+            width: 15rem;
+        }
+        .button_1 {
+            margin: .5rem 0rem 0rem 0rem;
+            width: 4rem;
+            height: 2rem;
+            background:  rgb(52, 123, 229);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+        }
+        .button_2 {
+            margin: .5rem 0rem 0rem 0rem;
+            width: 4rem;
+            height: 2rem;
+            background:rgb(13, 167, 8);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+        }
+        #comment {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div >
+        <form class="box_1" action="/registration" method="post">
+            <h2 class="heading_1">Registration</h2>
+            <div class="message">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flashes">
+                            {% for category, message in messages %}
+                                <li id='list' class='{{ category }}'>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <label class="labels" for="first_name">First Name:</label>
+            <input class="text_boxes" name="first_name" type="text"/>
+            <label class="labels" for="last_name">Last Name:</label>
+            <input class="text_boxes" name="last_name" type="text"/>
+            <label class="labels" for="email">Email:</label>
+            <input class="text_boxes" name="email" type="text"/>
+            <!-- <label class="labels" for="optimism">Is the glass half full or half empty:</label>
+            <div class="radio">
+                <input type="radio" id="full" name="optimism" value="optimist">
+                
+                <label class="labels" for="full">Half Full</label>
+                <input type="radio" id="empty" name="optimism" value="pessimist">
+                <label class="labels" for="empty">Half Empty</label>
+            </div> -->
+            <label class="labels" for="password">Password:</label>
+            <input class="text_boxes" name="password" type="text"/>
+            <label class="labels" for="confirm">Confirm Password:</label>
+            <input class="text_boxes" name="confirm" type="text"/>
+            <input class="button_1" type="submit" value="Register">
+        </form>
+    </div>
+    <div >
+        <form class="box_2" action="/login" method="post">
+            <h2 class="heading_2">Login</h2>
+            <div class="message">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="flashes">
+                            {% for category, message in messages %}
+                                <li id='list' class='{{ category }}'>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <label class="labels" for="email">Email:</label>
+            <input class="text_boxes" name="email" type="text"/>
+            <label class="labels" for="password">Password:</label>
+            <input class="text_boxes" name="password" type="text"/>
+            <input class="button_2" type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
