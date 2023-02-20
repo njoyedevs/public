@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{  }} Recipies</title>
+    <title>Recipies</title>
     <style>
         * {
             padding: 0;
@@ -13,14 +13,29 @@
         }
         body {
             display: flex;
-            align-items: left;
+            align-items: center;
             justify-content: center;
             flex-direction: column;
+        }
+        .top  {
+            margin: 0rem 60rem 1rem 0rem;
         }
         h1 {
             color: rgb(11, 83, 176);
             margin: 1rem 0rem 0rem 2rem;
         }
+        .middle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h3 {
+            margin: 0rem 45rem 0rem 0rem;
+        }
+        a {
+            margin: 1rem 0rem 0rem 2rem;
+        }
+        
         table.GeneratedTable {
             /* width: 100%; */
             /* background-color: #ffffff; */
@@ -49,19 +64,18 @@
             height: 2rem;
             text-align: left;
         }
-        a {
-            margin: 1rem 0rem 0rem 2rem;
-        }
+        
         </style>
 </head>
 <body>
-    <h1>Welcome, {{ }}</h1>
+    <div class="top">
+        <h1>Welcome,</h1>
+    </div>
     <div class="middle">
         <h3>All posted recipies:</h3>
-        <a href="/recipes/new" class="create"></a>
-        <a href="/logout" class="logout"></a>
+        <a href="/recipes/new" class="create">+ create</a>
+        <a href="/clear_session" class="logout">logout</a>
     </div>
-    <h1>Welcome, {{ }}</h1>
     <table class="GeneratedTable">
         <thead>
             <tr>
@@ -72,7 +86,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for recipe in recipes %}
+            <!-- {% for recipe in recipes %}
             <tr>
                 <td>{{ recipe.name}}</td>
                 <td>{{ recipe.under_30 }}</td>
@@ -81,9 +95,8 @@
                 <td><a href="/recipes/edit/{{ recipe.id }}" class="edit"></a>edit</td>
                 <td><a href="/recipes/delete/{{ recipe.id }}" class="edit"></a>delete</td>
             </tr>
-            {% endfor %}
+            {% endfor %} -->
         </tbody>
     </table>
-    <a href="/clear_session">Logout</a>
 </body>
 </html>

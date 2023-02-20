@@ -6,4 +6,4 @@ BCRYPT = Bcrypt(app)
 
 app.secret_key = "645-smsjsdjsus8s84u4jh4j4j4j4nnrjfjfhydujkdekmdidurtu9"
 
-DATABASE = 'recipies'
+DATABASE = 'recipes'

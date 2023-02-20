@@ -6,7 +6,8 @@ from flask_app import app, BCRYPT
 
 @app.route('/recipes')
 def recipies():
-    return render_template('recipes.html', recipes=recipes.Recipe.get_all_recipes())  
+    
+    return render_template('recipes.html')  #recipes=recipes.Recipe.get_all_recipes_for_user( session['user_id'] )
 
 @app.route('/recipes/new')
 def new_recipe():
@@ -22,18 +23,29 @@ def show_recipe(id):
     data = {
         "id":id
     }
-    return redirect('show_recipe.html', recipe=recipes.Recipe.get_one_recipe(data))
+    return render_template('show_recipe.html') #, recipe=recipes.Recipe.get_one_recipe(data)
 
 @app.route('/recipes/edit/<int:id>')
 def edit_recipe(id):
-    data = {
-        "id":id
-    }
-    return render_template('edit_recipe.html', recipe=recipes.Recipe.get_one_recipe(data))
+    
+    session['recipe_id'] = id
+    
+    return render_template('edit_recipe.html')
 
 @app.route('/recipes/update', methods=["POST"])
 def update_recipe():
-    recipes.Recipe.update_recipe(request.form)
+    
+    data = {
+        'id': session['recipe_id'],
+        'name': request.form['name'],
+        'description': request.form['description'],
+        'instructions': request.form['instructions'],
+        'date_cooked': request.form['date_cooked'],
+        'under_30': request.form['under_30'],
+        'user_id': session['user_id'],
+    }
+    
+    recipes.Recipe.update_recipe(data)
     return redirect('/recipes')
 
 @app.route('/recipes/delete/<int:id>')

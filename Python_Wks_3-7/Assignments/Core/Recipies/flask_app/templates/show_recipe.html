@@ -4,76 +4,107 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{  }} Dojo</title>
+    <title>Recipe Name</title>
     <style>
         * {
             padding: 0;
             margin: 0;
             box-shadow: none;
         }
+
         body {
             display: flex;
-            align-items: left;
-            justify-content: center;
+            align-items: center;
             flex-direction: column;
         }
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(86, 83, 83);
+            border-radius: 5px;
+            color: white;
+            padding: 2rem;
+            margin: 3rem 0rem 0rem 0rem;
+        }
+        .top {
+            display: flex; 
+            align-items: center;
+            flex-direction: row; 
+            border-bottom: .1rem solid  rgb(52, 123, 229);
+        }
         h1 {
-            color: rgb(11, 83, 176);
-            margin: 1rem 0rem 0rem 2rem;
+            color: rgb(52, 123, 229);
         }
-        table.GeneratedTable {
-            /* width: 100%; */
-            /* background-color: #ffffff; */
-            border-collapse: collapse;
-            border-width: .1rem;
-            border-color: #86d5f2;
-            border-style: solid;
-            color: #000000;;
-            margin: 1rem 2rem 0rem 2rem;
+        .left {
+            margin: 0rem 5rem 1rem 0rem;
         }
-        table.GeneratedTable td, table.GeneratedTable th {
-            border-width: .1rem;
-            border-color: #86d5f2 ;
-            border-style: solid;
-            background-color: #9dece9;
-            width: 14rem;
-            height: 2rem;
-            text-align: left;
-            padding: 0rem 1rem 0rem 1rem;
+        .right {
+            margin: 0rem 2rem 1rem 0rem;
+            padding: 0rem 0rem 0rem 9rem;
         }
-        table.GeneratedTable thead {
-            background-color: #86d5f2;
-            /* border-color: #02ffff;
-            border-radius: 10px; */
-            width: 14rem;
-            height: 2rem;
-            text-align: left;
+        #links {
+            margin: 0rem 2rem 1rem 0rem;
+            color: red;
         }
-        a {
-            margin: 1rem 0rem 0rem 2rem;
+        .middle {
+            display: flex; 
+            align-items: center;
+            flex-direction: row; 
+            color: rgb(234, 206, 45);
+            margin: 1rem 0rem 0rem 0rem;
+        }
+        .bottom {
+            display: flex; 
+            flex-direction: column;
+            border: .1rem solid rgb(234, 206, 45);
+            padding: 1rem;
+        }
+        .rows {
+            display: flex; 
+            margin: 0rem 0rem 1rem 0rem;
+            font-size: 1.1rem;
+        }
+        .labels {
+            margin: 0rem 5rem 0rem 0rem;
+            width: 10rem;
+        }
+        .info {
+            margin: 0rem 0rem 0rem 0rem;
+            inline-size: 250px;
+            overflow-wrap: break-word;
         }
         </style>
 </head>
 <body>
-    <h1>{{  }} Ninjas</h1>
-    <table class="GeneratedTable">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- {% for one_ninja in dojo.ninjas %}
-            <tr>
-                <td>{{one_ninja.first_name}}</td>
-                <td>{{one_ninja.last_name}}</td>
-                <td>{{one_ninja.age}}</td>
-            </tr>
-            {% endfor %} -->
-        </tbody>
-    </table>
-    <a href="/recipes">Home</a>
+    <div class="container">
+        <div class="top">
+            <h1 class="left">Welcome, First Name</h1>
+            <a id='links'  href='/recipes'>back to recipes</a>
+            <a  id='links' href="/clear_session">logout</a>
+        </div>
+        <div class="middle">
+            <h2 class="left">Recipe Name</h2>
+            <h3 class="right">Posted by: First Name</h3>
+        </div>
+        <div class="bottom">
+            <div class="rows">
+                <label class="labels" for="description">Description:</label>
+                <p class="info" name="description"> dddddddddddddddddddddddd</p>
+            </div>
+            <div class="rows">
+                <label class="labels" for="under">Under 30 Minutes:</label>
+                <p class="info" name="under">sssssssssssssssssssssssssssssss</p>
+            </div>
+            <div class="rows">
+                <label class="labels" for="instructions">Instructions:</label>
+                <p class="info" name="instructions">sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+            </div>
+            <div class="rows">
+                <label class="labels" for="date_made">Date Made:</label>
+                <p class="info" name="date_made">ssssssssssssssssssssssssssssssssssss</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
