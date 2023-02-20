@@ -43,11 +43,11 @@ CREATE TABLE IF NOT EXISTS `recipies`.`recipies` (
   `under_30` VARCHAR(45) NULL DEFAULT 'False',
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW(),
-  `users_id1` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_recipies_users1_idx` (`users_id1` ASC) VISIBLE,
+  INDEX `fk_recipies_users1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_recipies_users1`
-    FOREIGN KEY (`users_id1`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `recipies`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

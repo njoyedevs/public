@@ -19,7 +19,37 @@ class User:
         self.confirm = data['confirm']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        
+    @classmethod
+    def email_used(cls, data):
+        
+        query = "SELECT email FROM users WHERE email = %(email)s"
+        
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        
+        is_valid = False
+        
+        if len(results) > 0:
+            is_valid = True
+            
+        return is_valid
     
+    @classmethod
+    def save_user(cls, data):
+        query = """INSERT INTO users (first_name , last_name , email, password, confirm, created_at, updated_at)
+                VALUES (%(first_name)s , %(last_name)s , %(email)s, %(password)s , %(confirm)s, NOW(), NOW());"""
+                
+        return connectToMySQL(DATABASE).query_db(query, data)
+    
+    @classmethod
+    def verify_one(cls,data):
+        
+        query = "SELECT * FROM users WHERE email = %(email)s"
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        
+        return results
+        
+
     @staticmethod
     def validate_name(data):
         
@@ -80,21 +110,6 @@ class User:
         
         return is_valid
     
-    @classmethod
-    def save_user(cls, data):
-        query = """INSERT INTO users (first_name , last_name , email, password, confirm, created_at, updated_at)
-                VALUES (%(first_name)s , %(last_name)s , %(email)s, %(password)s , %(confirm)s, NOW(), NOW());"""
-                
-        return connectToMySQL(DATABASE).query_db(query, data)
-    
-    @classmethod
-    def verify_one(cls,data):
-        
-        query = "SELECT * FROM users WHERE email = %(email)s"
-        results = connectToMySQL(DATABASE).query_db(query, data)
-        
-        return results
-    
     # @classmethod
     # def get_one_user(cls,data):
     #     query = f"SELECT * FROM users WHERE id = {data}" #### Can't get this to work add %(id)s when fixed
@@ -134,16 +149,4 @@ class User:
     
     
     
-    # @classmethod
-    # def email_used(cls, data):
-        
-    #     query = "SELECT email FROM users WHERE email = %(email)s"
-        
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-        
-    #     is_valid = False
-        
-    #     if len(results) > 0:
-    #         is_valid = True
-            
-    #     return is_valid
+
