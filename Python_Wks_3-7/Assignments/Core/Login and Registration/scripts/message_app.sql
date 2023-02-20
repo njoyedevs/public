@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `message_app` ;
 -- -----------------------------------------------------
 -- Schema message_app
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `message_app` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `message_app` DEFAULT CHARACTER SET utf8mb3 ;
 USE `message_app` ;
 
 -- -----------------------------------------------------
@@ -20,37 +20,18 @@ USE `message_app` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `message_app`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `optimism` VARCHAR(45) NULL,
-  `password` VARCHAR(60) NULL,
-  `confirm` VARCHAR(60) NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `optimism` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(60) NULL DEFAULT NULL,
+  `confirm` VARCHAR(60) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `message_app`.`messages`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `message_app`.`messages` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `recipient_id` INT NULL,
-  `message` VARCHAR(250) NULL,
-  `read` VARCHAR(5) NULL DEFAULT 'False',
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_messages_users_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_messages_users`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `message_app`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -58,8 +39,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `message_app`.`friends` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   `friend_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -67,15 +48,34 @@ CREATE TABLE IF NOT EXISTS `message_app`.`friends` (
   INDEX `fk_friendships_users2_idx` (`friend_id` ASC) VISIBLE,
   CONSTRAINT `fk_friendships_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `message_app`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `message_app`.`users` (`id`),
   CONSTRAINT `fk_friendships_users2`
     FOREIGN KEY (`friend_id`)
-    REFERENCES `message_app`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `message_app`.`users` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `message_app`.`messages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `message_app`.`messages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `recipient_id` INT NULL DEFAULT NULL,
+  `message` VARCHAR(250) NULL DEFAULT NULL,
+  `read` VARCHAR(5) NULL DEFAULT 'False',
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_messages_users_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_messages_users`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `message_app`.`users` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
