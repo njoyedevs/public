@@ -61,7 +61,7 @@ class Message:
                 JOIN users as recipient ON messages.user_id = recipient.id
                 WHERE recipient_id =  {data}"""
         results = connectToMySQL(DATABASE).query_db(query)
-        print(f'THIS IS RECIEVED: {results}')
+        # print(f'THIS IS RECIEVED: {results}')
 
         # Create and populate a list of message objects
         messages = []
@@ -82,7 +82,7 @@ class Message:
             # recipient = users.User(recipient_data)
             # print(message['user_id'])
             sender = users.User.get_one_user(message['user_id'])
-            print(sender.first_name)
+            # print(sender.first_name)
 
             # Make the message object
             message = {
@@ -95,7 +95,7 @@ class Message:
             }
             messages.append( [cls(message), sender.first_name])
             
-        print(messages)
+        # print(messages)
 
         return messages
     
@@ -146,7 +146,7 @@ class Message:
     @classmethod
     def delete_message(cls, data):
         
-        # print(data)
+        print(data)
         
         query  = "DELETE FROM messages WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)

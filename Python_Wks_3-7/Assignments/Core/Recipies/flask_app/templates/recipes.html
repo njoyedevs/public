@@ -11,31 +11,22 @@
             margin: 0;
             box-shadow: none;
         }
-        body {
+        .container {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            background-color: rgb(86, 83, 83);
+            border-radius: 5px;
+            margin: 2rem 15rem 0rem 15rem;
+            /* padding: 2rem 1rem 2rem 1rem;  */
+            width: 60rem;
+            height: 43rem;
         }
-        .top  {
-            margin: 0rem 60rem 1rem 0rem;
-        }
-        h1 {
-            color: rgb(11, 83, 176);
-            margin: 1rem 0rem 0rem 2rem;
-        }
-        .middle {
-            display: flex;
+        .top {
+            display: flex; 
             align-items: center;
-            justify-content: center;
         }
-        h3 {
-            margin: 0rem 45rem 0rem 0rem;
-        }
-        a {
-            margin: 1rem 0rem 0rem 2rem;
-        }
-        
         table.GeneratedTable {
             /* width: 100%; */
             /* background-color: #ffffff; */
@@ -64,39 +55,73 @@
             height: 2rem;
             text-align: left;
         }
-        
+        .links {
+            margin: 0rem 1.5rem 0rem 0rem;
+            padding: .5rem 1rem .5rem 1rem;
+        }
+        #button_1 {
+            width: 4rem;
+            height: 2rem;
+            background:  rgb(52, 123, 229);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            /* margin: 0rem 2rem 1rem 0rem; */
+            text-decoration: none;
+            /* text-align: center;
+            text-justify: center; */
+        }
+        #button_2 {
+            width: 4rem;
+            height: 2rem;
+            background:rgb(13, 167, 8);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            /* margin: 0rem 2rem 1rem 0rem; */
+            text-decoration: none;
+            /* text-align: center;
+            text-justify: center; */
+        }
         </style>
 </head>
 <body>
-    <div class="top">
-        <h1>Welcome,</h1>
+    <div class="container">
+        <div class="top">
+            <div class="top_left">
+                <h1 class="left">Welcome, First Name</h1>
+            </div>
+            <div class="top_right">
+                <a class='links' id="button_2" href='/recipes/new'>create recipe</a>
+                <a class='links' id="button_1" href="/clear_session">logout</a>
+            </div>
+        </div>
+        <div class="middle">
+            <h3>All posted recipies:</h3>
+        </div>
+
+        <table class="GeneratedTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Under</th>
+                    <th>Posted By:</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td>{{ recipe.name}}</td>
+                    <td>{{ recipe.under_30 }}</td>
+                    <td>{{ recipe.user.first_name }}</td>
+                    <td><a href="/recipes/{{ recipe.id }}" class="view_recipie">view recipie</a> |
+                    <a href="/recipes/edit/{{ recipe.id }}" class="edit">edit</a> |
+                    <a href="/recipes/delete/{{ recipe.id }}" class="edit">delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    <div class="middle">
-        <h3>All posted recipies:</h3>
-        <a href="/recipes/new" class="create">+ create</a>
-        <a href="/clear_session" class="logout">logout</a>
-    </div>
-    <table class="GeneratedTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Under</th>
-                <th>Posted By:</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- {% for recipe in recipes %}
-            <tr>
-                <td>{{ recipe.name}}</td>
-                <td>{{ recipe.under_30 }}</td>
-                <td>{{ recipe.first_name }}</td>
-                <td><a href="/recipes/{{ recipe.id }}" class="view_recipie"></a>view recipie</td>
-                <td><a href="/recipes/edit/{{ recipe.id }}" class="edit"></a>edit</td>
-                <td><a href="/recipes/delete/{{ recipe.id }}" class="edit"></a>delete</td>
-            </tr>
-            {% endfor %} -->
-        </tbody>
-    </table>
 </body>
 </html>

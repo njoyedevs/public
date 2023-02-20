@@ -23,7 +23,7 @@ def dashboard():
     sent_messages = messages.Message.get_sent_messages(session['user_id'])
     # print(sent_messages)
     recieved_messages = messages.Message.get_recieved_messages(session['user_id'])
-    print(recieved_messages)
+    # print(recieved_messages)
 
 
     return render_template('secure.html', all_users=users_list, one_user=user, rec_messages=recieved_messages, sen_messages=sent_messages)   #messages=message_info,  user=logins.User.get_one_user(id),

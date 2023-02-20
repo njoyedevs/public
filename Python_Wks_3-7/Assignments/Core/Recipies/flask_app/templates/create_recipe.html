@@ -30,7 +30,7 @@
         .left_box {
             display: flex;
             flex-direction: column;
-            margin: 0rem 4rem 0rem 0rem;
+            margin: 0rem 2rem 0rem 0rem;
         }
         .text_inputs {
             display: flex;
@@ -84,6 +84,32 @@
             margin: 0rem 2rem 0rem 0rem;
             color: red;
         }
+        #button_1 {
+            width: 4rem;
+            height: 2rem;
+            background:  rgb(52, 123, 229);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            margin: 0rem 0rem 1rem 0rem;
+            padding: .5rem 1rem .5rem 1rem;
+            text-decoration: none;
+            text-align: center;
+            text-justify: center;
+        }
+        #button_2 {
+            width: 4rem;
+            height: 2rem;
+            background:rgb(13, 167, 8);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            margin: 0rem 2rem 1rem 0rem;
+            padding: .5rem 1rem .5rem 1rem;
+            text-decoration: none;
+            text-align: center;
+            text-justify: center;
+        }
         </style>
 </head>
 <body>
@@ -107,8 +133,8 @@
             </div>
             <div class="right_box">
                 <div class="top_right">
-                    <a href="/recipes" class="link">back to recipes</a>
-                    <a href="/clear_session" class="link">logout</a>
+                    <a id='button_2' href="/recipes" class="link">recipes</a>
+                    <a id='button_1' href="/clear_session" class="link">logout</a>
                 </div>
                 <!-- input.date -->
                 <div class="middle_right">

@@ -2,6 +2,10 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 from flask_app import DATABASE
 
+from flask_app.models import users
+
+from flask import flash
+
 class Friend:
     def __init__(self,data):
         self.id = data['id']
@@ -14,90 +18,56 @@ class Friend:
                 VALUES (NOW(), NOW(), %(user_id)s, %(friend_id)s);"""
                 
         return connectToMySQL(DATABASE).query_db(query, data)
-    
-    # @classmethod
-    # def get_one_comment(cls,data):
-    #     query = "SELECT * FROM comments WHERE id = %(id)s"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-    #     return cls(results[0])
-    
-    @classmethod
-    def get_all_friends(cls,data):
-        print(data)
-        query = "SELECT * FROM friends WHERE user_id = 1;"
-        
-        results = connectToMySQL(DATABASE).query_db(query, data)
-        # print(results)
-        # friends = []
-        
-        # for friend in results:
-        #     friends.append( cls(friend) )
-            
-        # return friends
-    
-    # def get_friendship_info(cls,data):
-    #     query = """SELECT * FROM users 
-    #             LEFT JOIN friends ON
-    #             friends.user_id = users.id
-    #             LEFT JOIN users as users_2 ON
-    #             friends.friend_id = users_2.id
-    #             WHERE users.id = %(data)s;"""
-        
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
 
-    #     data_array = []
-        
-    #     for item in results:
-    #         data_array.append( cls(item) )
-
-    #     return data_array
-    
     @classmethod
     def get_friendship_info(cls,data):
         
-        print(data)
+        # print(data)
         
-        # # query = "SELECT * FROM dojos LEFT JOIN ninjas on ninjas.dojo_id=dojos.id WHERE dojos.id = %(id)s;"  # Cant get this to work!
-        query = f"""SELECT * FROM users 
+        query = """SELECT * FROM users 
                 LEFT JOIN friends ON
                 friends.user_id = users.id
                 LEFT JOIN users AS users_2 ON
                 friends.friend_id = users_2.id
-                WHERE users.id = {data};"""
+                WHERE users.id = %(id)s;"""
         
         results = connectToMySQL(DATABASE).query_db(query,data)
         
-        print(results)
+        # print(results)
         
-        # dojo = cls(results[0])
+        # user = cls(results[0])
         
-        # for ninja_in_dojo in results:
+        users_friends = []
+        
+        for row in results:
             
-        #     ninja_data = {
-        #         "id" : ninja_in_dojo['ninjas.id'],
-        #         "first_name" : ninja_in_dojo['first_name'],
-        #         "last_name" : ninja_in_dojo['last_name'],
-        #         "age" : ninja_in_dojo['age'],
-        #         "created_at" : ninja_in_dojo['ninjas.created_at'],
-        #         "updated_at" : ninja_in_dojo['ninjas.updated_at']
-        #     }
+            friend = cls(row)
+            
+            friend_data = {
+                **row,
+                "id" : row['friends.id'],
+                "created_at" : row['friends.created_at'],
+                "updated_at" : row['friends.updated_at'],
+                "id" : row['users_2.id'],
+                "first_name" : row['users_2.first_name'],
+                "last_name" : row['users_2.last_name'],
+                "email" : row['users_2.email'],
+                "optimism" : row['users_2.optimism'],
+                "password" : row['users_2.password'],
+                "confirm" : row['users_2.confirm'],
+                "created_at" : row['users_2.created_at'],
+                "updated_at" : row['users_2.updated_at']
+            }
         
-        #     dojo.ninjas.append(Ninja(ninja_data))
+            # print(f'Row: {row}')
+            # print(f'User Data: {friend_data}')
+
+            friend.user2 = users.User(friend_data)
+            users_friends.append(friend)
         
-        # return dojo
-
-    # @classmethod
-    # def get_sent_comments(cls,data):
-    #     query = "SELECT * FROM comments WHERE login_id = %(id)s"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-
-    #     if results != False:
-    #         messages = []
-        
-    #         for message in results:
-    #             messages.append( cls(message) )
-
-    #         return messages
+        # print(users_friends)
+    
+        return users_friends
     
     @classmethod
     def delete_friend(cls, data):

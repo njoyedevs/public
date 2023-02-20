@@ -7,7 +7,7 @@ from flask_app import app, BCRYPT
 @app.route('/recipes')
 def recipies():
     
-    return render_template('recipes.html')  #recipes=recipes.Recipe.get_all_recipes_for_user( session['user_id'] )
+    return render_template('recipes.html',recipes=recipes.Recipe.get_all_recipes_for_user({'id':session['user_id']})) 
 
 @app.route('/recipes/new')
 def new_recipe():
@@ -23,7 +23,9 @@ def show_recipe(id):
     data = {
         "id":id
     }
-    return render_template('show_recipe.html') #, recipe=recipes.Recipe.get_one_recipe(data)
+    
+    recipe=recipes.Recipe.get_one_recipe(data)
+    return render_template('show_recipe.html', recipe=recipes.Recipe.get_one_recipe(data)) #, recipe=recipes.Recipe.get_one_recipe(data)
 
 @app.route('/recipes/edit/<int:id>')
 def edit_recipe(id):

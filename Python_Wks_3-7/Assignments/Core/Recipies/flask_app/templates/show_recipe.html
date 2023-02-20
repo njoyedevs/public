@@ -30,29 +30,28 @@
         .top {
             display: flex; 
             align-items: center;
-            flex-direction: row; 
-            border-bottom: .1rem solid  rgb(52, 123, 229);
+            /* flex-direction: row; */
         }
         h1 {
             color: rgb(52, 123, 229);
         }
-        .left {
-            margin: 0rem 5rem 1rem 0rem;
+        .top_left {
+            margin: 0rem 5rem 0rem 0rem;
         }
         .right {
-            margin: 0rem 2rem 1rem 0rem;
+            margin: 0rem 2rem 0rem 0rem;
             padding: 0rem 0rem 0rem 9rem;
         }
         .links {
-            margin: 0rem 2rem 1rem 0rem;
-            color: red;
+            margin: 0rem 1.5rem 0rem 0rem;
+            padding: .5rem 1rem .5rem 1rem;
         }
         .middle {
             display: flex; 
             align-items: center;
             flex-direction: row; 
-            color: rgb(234, 206, 45);
-            margin: 1rem 0rem 0rem 0rem;
+            color:rgb(234, 206, 45);
+            margin: 1rem 0rem 1rem 0rem;
         }
         .bottom {
             display: flex; 
@@ -81,10 +80,10 @@
             color: #f7faf9;
             border-radius: 5px;
             border: none;
-            margin: 0rem 2rem 1rem 0rem;
+            /* margin: 0rem 2rem 1rem 0rem; */
             text-decoration: none;
-            text-align: center;
-            text-justify: center;
+            /* text-align: center;
+            text-justify: center; */
         }
         #button_2 {
             width: 4rem;
@@ -93,10 +92,10 @@
             color: #f7faf9;
             border-radius: 5px;
             border: none;
-            margin: 0rem 2rem 1rem 0rem;
+            /* margin: 0rem 2rem 1rem 0rem; */
             text-decoration: none;
-            text-align: center;
-            text-justify: center;
+            /* text-align: center;
+            text-justify: center; */
         }
     
         </style>
@@ -104,9 +103,13 @@
 <body>
     <div class="container">
         <div class="top">
-            <h1 class="left">Welcome, First Name</h1>
-            <a class='links' id="button_2" href='/recipes'>recipes</a>
-            <a  class='links' id="button_1" href="/clear_session">logout</a>
+            <div class="top_left">
+                <h1 class="left">Welcome, First Name</h1>
+            </div>
+            <div class="top_right">
+                <a class='links' id="button_2" href='/recipes'>recipes</a>
+                <a class='links' id="button_1" href="/clear_session">logout</a>
+            </div>
         </div>
         <div class="middle">
             <h2 class="left">Recipe Name</h2>
@@ -115,7 +118,7 @@
         <div class="bottom">
             <div class="rows">
                 <label class="labels" for="description">Description:</label>
-                <p class="info" name="description"> dddddddddddddddddddddddd</p>
+                <p class="info" name="description">{{ recipe.description }}</p>
             </div>
             <div class="rows">
                 <label class="labels" for="under">Under 30 Minutes:</label>

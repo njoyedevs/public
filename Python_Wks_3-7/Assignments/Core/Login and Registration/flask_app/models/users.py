@@ -20,6 +20,7 @@ class User:
         self.confirm = data['confirm']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.users = []
     
     
     @classmethod

@@ -35,6 +35,7 @@ class Recipe:
     def get_one_recipe(cls,data):
         query = "SELECT * FROM recipes WHERE id = %(id)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
+        print(results)
         return cls(results[0])
     
     @classmethod
@@ -53,26 +54,30 @@ class Recipe:
     @classmethod
     def get_all_recipes_for_user(cls,data):
         
-        query = f"SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE users.id = {data};"
+        query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE users.id = %(id)s;"
         
         results = connectToMySQL(DATABASE).query_db(query,data)
         
-        # print(results)
+        print(results)
         
-        recipes = cls(results[0])
+        recipes = []
         
-        for recipe_for_user in results:
+        for row in results:
+            
+            recipe = cls(row)
             
             user_data = {
-                "id" : recipe_for_user['users.id'],
-                "first_name" : recipe_for_user['first_name'],
-                "last_name" : recipe_for_user['last_name'],
-                "email" : recipe_for_user['m'],
-                "created_at" : recipe_for_user['users.created_at'],
-                "updated_at" : recipe_for_user['users.updated_at']
+                **row,
+                "id" : row['users.id'],
+                "created_at" : row['users.created_at'],
+                "updated_at" : row['users.updated_at']
             }
         
-            recipes.recipe_list.append(users.User(user_data))
+            print(f'Row: {row}')
+            print(f'User Data: {user_data}')
+
+            recipe.user = users.User(user_data)
+            recipes.append(recipe)
         
         print(recipes)
         

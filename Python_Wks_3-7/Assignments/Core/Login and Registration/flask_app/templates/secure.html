@@ -18,7 +18,7 @@
         .heading {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             border-bottom: .1rem solid rgb(86, 83, 83);
             padding: 0rem 0rem .3rem 0rem;
         }
@@ -26,10 +26,10 @@
             margin: 1rem 0rem 0rem 2rem;
         }
         .heading > h2 {
-            margin: 1rem 0rem 0rem 35rem;
+            margin: 1rem 5rem 0rem 25rem;
         }
         .heading > a {
-            margin: 1rem 0rem 0rem 0rem;
+            margin: 1rem 1rem 0rem 0rem;
         }
         .friends_button {
             margin: 0rem 0rem 0rem 0rem;
@@ -167,7 +167,7 @@
                     <p class="message_line">{{ message[0].message }}</p>
                 </div>
                 <input class="del_button" type="submit" value="Delete">
-                <input type="hidden" value="{{message.id}}" name="recipient_id">
+                <input type="hidden" value="{{message[0].id}}" name="recipient_id">
             </form>
             {% endfor %}
         </div>

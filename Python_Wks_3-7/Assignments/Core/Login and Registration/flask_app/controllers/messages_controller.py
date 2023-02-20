@@ -41,6 +41,7 @@ def friend_message():
 @app.route('/delete/message', methods=["POST"])
 def delete_message():
     
+    
     data = {
         'id': request.form['recipient_id']
     }

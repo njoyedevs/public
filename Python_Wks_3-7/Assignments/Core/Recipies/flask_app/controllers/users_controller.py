@@ -114,3 +114,6 @@ def clear_session():
     
 #     users.User.delete(data)
 #     return redirect('/')
+
+
+
