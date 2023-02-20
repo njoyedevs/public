@@ -43,7 +43,7 @@
             margin: 0rem 2rem 1rem 0rem;
             padding: 0rem 0rem 0rem 9rem;
         }
-        #links {
+        .links {
             margin: 0rem 2rem 1rem 0rem;
             color: red;
         }
@@ -74,14 +74,39 @@
             inline-size: 250px;
             overflow-wrap: break-word;
         }
+        #button_1 {
+            width: 4rem;
+            height: 2rem;
+            background:  rgb(52, 123, 229);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            margin: 0rem 2rem 1rem 0rem;
+            text-decoration: none;
+            text-align: center;
+            text-justify: center;
+        }
+        #button_2 {
+            width: 4rem;
+            height: 2rem;
+            background:rgb(13, 167, 8);
+            color: #f7faf9;
+            border-radius: 5px;
+            border: none;
+            margin: 0rem 2rem 1rem 0rem;
+            text-decoration: none;
+            text-align: center;
+            text-justify: center;
+        }
+    
         </style>
 </head>
 <body>
     <div class="container">
         <div class="top">
             <h1 class="left">Welcome, First Name</h1>
-            <a id='links'  href='/recipes'>back to recipes</a>
-            <a  id='links' href="/clear_session">logout</a>
+            <a class='links' id="button_2" href='/recipes'>recipes</a>
+            <a  class='links' id="button_1" href="/clear_session">logout</a>
         </div>
         <div class="middle">
             <h2 class="left">Recipe Name</h2>
