@@ -6,6 +6,8 @@ from flask_app import DATABASE, BCRYPT
 
 from flask import flash
 
+import datetime
+
 class Recipe:
     def __init__(self,data):
         self.id = data['id']
@@ -46,9 +48,12 @@ class Recipe:
         query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE recipes.id = %(id)s;"
         
         results = connectToMySQL(DATABASE).query_db(query,data)
+
+        print(results[0]['created_at'])
+        date = results[0]['created_at']
         
-        # print(results)
-        
+        results[0]['created_at'] = cls.convert_date(date)
+        print(results[0]['created_at'])
         recipes = []
         
         for row in results:
@@ -68,10 +73,23 @@ class Recipe:
             recipe.user = users.User(user_data)
             recipes.append(recipe)
         
-        # print(recipes)
+        # print(recipes[0].created_at)
         
         return recipes[0]
+    
+    @staticmethod
+    def convert_date(data):
         
+        # create the datetime object
+        dt = datetime.datetime(2023, 2, 19, 20, 4, 2)
+
+        # convert to the desired string format
+        dt_str = data.strftime('%m/%d/%Y %H:%M:%S')
+
+        # print the result
+        print(dt_str)  # outputs: "02/19/2023 20:04:02"
+        return dt_str
+    
     @classmethod
     def get_all_recipes(cls):
         query = "SELECT * FROM recipes;"
@@ -118,16 +136,40 @@ class Recipe:
         return recipes
     
     @classmethod
-    def get_all_recipes_for_all_users(cls, data):
+    def get_all_recipes_for_all_users(cls):
         
-        # print(data)
+        query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE recipes.id"
+                
+        # print(query)
         
-        query = """SELECT * FROM users 
-                LEFT JOIN friends ON
-                friends.user_id = users.id
-                LEFT JOIN users AS users_2 ON
-                friends.friend_id = users_2.id
-                WHERE users.id = %(id)s;"""
+        results = connectToMySQL(DATABASE).query_db(query)
+        
+        # print(results)
+        
+        recipes = []
+        
+        for row in results:
+            
+            recipe = cls(row)
+            
+            user_data = {
+                **row,
+                "id" : row['users.id'],
+                "created_at" : row['users.created_at'],
+                "updated_at" : row['users.updated_at']
+            }
+        
+            # print(f'Row: {row}')
+            # print(f'User Data: {user_data}')
+
+            recipe.user = users.User(user_data)
+            recipes.append(recipe)
+        
+        # print(recipes)
+        
+        return recipes
+        
+        
     
     @classmethod
     def delete_recipe(cls, data):
