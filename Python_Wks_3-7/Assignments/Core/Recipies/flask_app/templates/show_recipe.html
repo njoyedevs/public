@@ -131,7 +131,7 @@
             </div>
             <div class="rows">
                 <label class="labels" for="date_made">Date Made:</label>
-                <p class="info" name="date_made">{{ recipe.date_cooked }}</p>
+                <p class="info" name="date_made">{{ recipe.date_cooked.strftime("%m/%d/%Y")  }}</p>
             </div>
         </div>
     </div>

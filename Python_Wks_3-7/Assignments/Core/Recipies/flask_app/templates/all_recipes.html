@@ -149,7 +149,7 @@
         .row_buttons {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: left;
             margin: .3rem 0rem .3rem 0rem;
         }
         </style>
@@ -187,9 +187,7 @@
                         <td class="posted_by_column">{{ recipe.user.first_name }}</td>
                         <td>
                             <div class="row_buttons">
-                                {% if recipe.user_id == session['user_id'] %}
                                 <a href="/recipes/{{ recipe.id }}" id='button_3' class="view_recipie">view</a>
-                                {% endif %}
                                 {% if recipe.user_id == session['user_id'] %}
                                 <a href="/recipes/edit/{{ recipe.id }}" id='button_3' class="edit">edit</a>
                                 {% endif %}
