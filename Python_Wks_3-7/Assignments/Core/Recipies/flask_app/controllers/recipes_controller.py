@@ -12,9 +12,7 @@ def recipies():
 @app.route('/recipes/dashboard')
 def dashboard():
     
-    #recipes.Recipe.get_all_recipes_for_all_users()
-    
-    return render_template('all_recipes.html',recipes=recipes.Recipe.get_all_recipes_for_user({'id':session['user_id']})) # recipes=recipes.Recipe.get_all_recipes_for_all_users()
+    return render_template('all_recipes.html',recipes=recipes.Recipe.get_all_recipes_for_all_users()) 
 
 @app.route('/recipes/new')
 def new_recipe():
