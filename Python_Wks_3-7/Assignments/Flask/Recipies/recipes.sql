@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `recipes` ;
 -- -----------------------------------------------------
 -- Schema recipes
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `recipes` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `recipes` DEFAULT CHARACTER SET utf8mb3 ;
 USE `recipes` ;
 
 -- -----------------------------------------------------
@@ -20,15 +20,16 @@ USE `recipes` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `recipes`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `password` VARCHAR(60) NULL,
-  `confirm` VARCHAR(60) NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(60) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -36,22 +37,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `recipes`.`recipes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `description` VARCHAR(200) NULL,
-  `instructions` VARCHAR(500) NULL,
-  `date_cooked` DATETIME NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `description` VARCHAR(200) NULL DEFAULT NULL,
+  `instructions` VARCHAR(500) NULL DEFAULT NULL,
+  `date_cooked` DATETIME NULL DEFAULT NULL,
   `under_30` VARCHAR(45) NULL DEFAULT 'False',
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_recipies_users1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_recipies_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `recipes`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `recipes`.`users` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
