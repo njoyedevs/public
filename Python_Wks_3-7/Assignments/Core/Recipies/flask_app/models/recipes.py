@@ -16,6 +16,7 @@ class Recipe:
         self.under_30 = data['under_30']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.user_id = data['user_id']
         self.recipe_list = []
         
     @classmethod
@@ -27,38 +28,26 @@ class Recipe:
     
     @classmethod
     def update_recipe(cls, data):
-        print(data)
-        query  = "UPDATE recipes SET name=%(name)s, description=%(description)s, instructions=%(instructions)s, date_cooked=%(date_cooked)s, under_30=%(under_30)s, updated_at = NOW() WHERE id = %(id)s;"
+        # print(data)
+        query  = "UPDATE recipes SET name=%(name)s, description=%(description)s, instructions=%(instructions)s, date_cooked=%(date_cooked)s, under_30=%(under_30)s, user_id=%(user_id)s, updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
         
     @classmethod
     def get_one_recipe(cls,data):
         query = "SELECT * FROM recipes WHERE id = %(id)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
-        print(results)
+        # print(results)
+        
         return cls(results[0])
     
-    @classmethod
-    def get_all_recipes(cls):
-        query = "SELECT * FROM recipes;"
+    @classmethod 
+    def get_user_for_recipe(cls, data):
         
-        results = connectToMySQL(DATABASE).query_db(query)
- 
-        recipes = []
-        
-        for recipe in results:
-            recipes.append( cls(recipe) )
-            
-        return recipes
-    
-    @classmethod
-    def get_all_recipes_for_user(cls,data):
-        
-        query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE users.id = %(id)s;"
+        query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE recipes.id = %(id)s;"
         
         results = connectToMySQL(DATABASE).query_db(query,data)
         
-        print(results)
+        # print(results)
         
         recipes = []
         
@@ -73,16 +62,73 @@ class Recipe:
                 "updated_at" : row['users.updated_at']
             }
         
-            print(f'Row: {row}')
+            # print(f'Row: {row}')
             print(f'User Data: {user_data}')
 
             recipe.user = users.User(user_data)
             recipes.append(recipe)
         
-        print(recipes)
+        # print(recipes)
+        
+        return recipes[0]
+        
+    @classmethod
+    def get_all_recipes(cls):
+        query = "SELECT * FROM recipes;"
+        
+        results = connectToMySQL(DATABASE).query_db(query)
+
+        recipes = []
+        
+        for recipe in results:
+            recipes.append( cls(recipe) )
+            
+        return recipes
+    
+    @classmethod
+    def get_all_recipes_for_user(cls,data):
+        
+        query = "SELECT * FROM recipes LEFT JOIN users on recipes.user_id=users.id WHERE users.id = %(id)s;"
+        
+        results = connectToMySQL(DATABASE).query_db(query,data)
+        
+        # print(results)
+        
+        recipes = []
+        
+        for row in results:
+            
+            recipe = cls(row)
+            
+            user_data = {
+                **row,
+                "id" : row['users.id'],
+                "created_at" : row['users.created_at'],
+                "updated_at" : row['users.updated_at']
+            }
+        
+            # print(f'Row: {row}')
+            # print(f'User Data: {user_data}')
+
+            recipe.user = users.User(user_data)
+            recipes.append(recipe)
+        
+        # print(recipes)
         
         return recipes
-                
+    
+    @classmethod
+    def get_all_recipes_for_all_users(cls, data):
+        
+        # print(data)
+        
+        query = """SELECT * FROM users 
+                LEFT JOIN friends ON
+                friends.user_id = users.id
+                LEFT JOIN users AS users_2 ON
+                friends.friend_id = users_2.id
+                WHERE users.id = %(id)s;"""
+    
     @classmethod
     def delete_recipe(cls, data):
         query  = "DELETE FROM recipes WHERE id = %(id)s;"

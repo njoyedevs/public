@@ -16,7 +16,6 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.confirm = data['confirm']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         
@@ -36,18 +35,21 @@ class User:
     
     @classmethod
     def save_user(cls, data):
-        query = """INSERT INTO users (first_name , last_name , email, password, confirm, created_at, updated_at)
-                VALUES (%(first_name)s , %(last_name)s , %(email)s, %(password)s , %(confirm)s, NOW(), NOW());"""
+        query = """INSERT INTO users (first_name , last_name , email, password, created_at, updated_at)
+                VALUES (%(first_name)s , %(last_name)s , %(email)s, %(password)s , NOW(), NOW());"""
                 
         return connectToMySQL(DATABASE).query_db(query, data)
     
     @classmethod
-    def verify_one(cls,data):
+    def get_by_email(cls,data):
         
         query = "SELECT * FROM users WHERE email = %(email)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
         
-        return results
+        if not results:
+            return False
+        
+        return cls(results[0])
         
 
     @staticmethod
@@ -91,23 +93,6 @@ class User:
             flash("Emailed Already Used!", 'email_error')
             is_valid = False
             
-        return is_valid
-    
-    @staticmethod
-    def compare_password(data):
-        
-        is_valid = True
-        if data['password'] != data['confirm']:
-            flash(u"Passwords do not match!", 'password_error')
-            is_valid = False
-            
-        res = re.search(PASSWORD_REGEX, data['password'])
-            
-        if not res:
-            flash("""Passwords must be at least 8 characters and
-                contain: 1(A-Z),1(a-z),1(0-9),1(!@#$%^&*)""", 'password_error')
-            is_valid = False
-        
         return is_valid
     
     # @classmethod

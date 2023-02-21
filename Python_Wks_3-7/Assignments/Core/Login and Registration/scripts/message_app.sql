@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `message_app`.`friends` (
     FOREIGN KEY (`friend_id`)
     REFERENCES `message_app`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `message_app`.`messages` (
     FOREIGN KEY (`user_id`)
     REFERENCES `message_app`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb3;
 
 

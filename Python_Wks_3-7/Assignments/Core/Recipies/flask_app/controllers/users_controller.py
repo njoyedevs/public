@@ -4,6 +4,10 @@ from flask_app.models import users
 
 from flask_app import app, BCRYPT
 
+import re
+
+PASSWORD_REGEX = re.compile(r"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")
+
 # @app.route('/')
 # def index():
 #     users = User.get_all()
@@ -28,42 +32,48 @@ def create_user():
     if not users.User.check_email(request.form):
         return redirect('/')
     
-    if not users.User.compare_password(request.form):
-        return redirect('/')
+    if request.form['password'] != request.form['confirm']:
+            flash(u"Passwords do not match!", 'password_error')
+            return redirect('/')
+            
+    res = re.search(PASSWORD_REGEX, request.form['password'])
+        
+    if not res:
+        flash("""Passwords must be at least 8 characters and
+            contain: 1(A-Z),1(a-z),1(0-9),1(!@#$%^&*)""", 'password_error')
     
     pw_hash = BCRYPT.generate_password_hash(request.form['password'])
-    
-    cnf_hash = BCRYPT.generate_password_hash(request.form['confirm'])
 
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
         "password":pw_hash,
-        "confirm": cnf_hash,
     }
     
     user_id = users.User.save_user(data)
     
     session['user_id'] = user_id
+    session['first_name'] =  request.form['first_name']
     
     return redirect('/recipes')
 
 @app.route('/login', methods=["POST"])
 def login():
     
-    user_data = users.User.verify_one(request.form)
+    user = users.User.get_by_email(request.form)
     
-    if not user_data:
+    if not user:
         flash('User does not exist', 'login_error')
         return redirect('/')
 
-    if not BCRYPT.check_password_hash(user_data[0]['password'], request.form['password']):
+    if not BCRYPT.check_password_hash(user.password, request.form['password']):
         # if we get False after checking the password
         flash("Invalid Password", 'password_error')
         return redirect('/')
     
-    session['user_id'] = user_data[0]['id']
+    session['user_id'] = user.id
+    session['first_name'] = user.first_name
     
     return redirect('/recipes')
 
